@@ -24,7 +24,6 @@ dependencies:
     path: ../../termare-space/termare_pty
   termare_view:
     path: ../../termare-space/termare_view
-
   dart_pty:
     path: ../../termare-space/dart_pty
 dev_dependencies:
