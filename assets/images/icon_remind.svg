@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="16px" height="16px" viewBox="0 0 16 16" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 63.1 (92452) - https://sketch.com -->
+    <title>icon_remind</title>
+    <desc>Created with Sketch.</desc>
+    <g id="伙办" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="18伙币-邀请销售" transform="translate(-28.000000, -580.000000)">
+            <g id="tips备份" transform="translate(16.000000, 568.000000)">
+                <g id="间距">
+                    <g id="icon/remind" transform="translate(12.000000, 12.000000)">
+                        <g id="icon_remind">
+                            <circle id="loading" fill="#FFB113" transform="translate(8.000000, 8.000000) scale(1, -1) translate(-8.000000, -8.000000) " cx="8" cy="8" r="8"></circle>
+                            <path d="M8,11 C8.55228475,11 9,11.4477153 9,12 C9,12.5522847 8.55228475,13 8,13 C7.44771525,13 7,12.5522847 7,12 C7,11.4477153 7.44771525,11 8,11 Z M8,3 C8.55228475,3 9,3.44771525 9,4 L9,9 C9,9.55228475 8.55228475,10 8,10 C7.44771525,10 7,9.55228475 7,9 L7,4 C7,3.44771525 7.44771525,3 8,3 Z" id="合并形状" fill="#FFFFFF" transform="translate(8.000000, 8.000000) scale(1, -1) translate(-8.000000, -8.000000) "></path>
+                        </g>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

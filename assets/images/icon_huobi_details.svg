@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="14px" height="14px" viewBox="0 0 14 14" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 63.1 (92452) - https://sketch.com -->
+    <title>icon_huobi_details</title>
+    <desc>Created with Sketch.</desc>
+    <g id="伙办" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="16伙币" transform="translate(-153.000000, -117.000000)">
+            <g id="Nav-Bars">
+                <g id="icon_huobi_details" transform="translate(145.000000, 109.000000)">
+                    <rect id="热区" fill="#D8D8D8" opacity="0" x="0" y="0" width="30" height="30"></rect>
+                    <circle id="loading" fill="#FFFFFF" opacity="0.258091518" transform="translate(15.000000, 15.000000) scale(1, -1) translate(-15.000000, -15.000000) " cx="15" cy="15" r="7"></circle>
+                    <path d="M15,17.625 C15.4832492,17.625 15.875,18.0167508 15.875,18.5 C15.875,18.9832492 15.4832492,19.375 15,19.375 C14.5167508,19.375 14.125,18.9832492 14.125,18.5 C14.125,18.0167508 14.5167508,17.625 15,17.625 Z M15,10.625 C15.4832492,10.625 15.875,11.0167508 15.875,11.5 L15.875,15.875 C15.875,16.3582492 15.4832492,16.75 15,16.75 C14.5167508,16.75 14.125,16.3582492 14.125,15.875 L14.125,11.5 C14.125,11.0167508 14.5167508,10.625 15,10.625 Z" id="合并形状" fill="#FFFFFF" transform="translate(15.000000, 15.000000) scale(1, -1) translate(-15.000000, -15.000000) "></path>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

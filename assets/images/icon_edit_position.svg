@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="22px" height="22px" viewBox="0 0 22 22" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 63.1 (92452) - https://sketch.com -->
+    <title>icon_edit_position</title>
+    <desc>Created with Sketch.</desc>
+    <g id="伙办" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="15伙办-备注联系人信息" transform="translate(-32.000000, -295.000000)">
+            <g id="企业名备份" transform="translate(15.000000, 276.000000)">
+                <g id="icon_edit_position" transform="translate(12.000000, 14.000000)">
+                    <g transform="translate(5.000000, 5.000000)">
+                        <rect id="矩形" fill="#D8D8D8" opacity="0" x="0" y="0" width="22" height="22"></rect>
+                        <path d="M9.40370085,3 L12.5962991,3 C13.3067702,3 13.8827208,3.57595059 13.8827208,4.28642166 C13.8827208,4.54039343 13.8075449,4.78868271 13.6666667,5 L12.9270664,6.10940039 C12.5561348,6.66579773 11.9316722,7 11.2629658,7 L10.7370342,7 C10.0683278,7 9.44386515,6.66579773 9.07293359,6.10940039 L8.33333333,5 C7.9392349,4.40885234 8.09897485,3.61015258 8.69012251,3.21605414 C8.9014398,3.07517594 9.14972907,3 9.40370085,3 Z" id="矩形" stroke="#0D0D14" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill-rule="nonzero"></path>
+                        <path d="M8.01970732,12.6170808 L9.68032975,11.1588405 C10.4352367,10.4959349 11.5647633,10.4959349 12.3196703,11.1588405 L13.9802927,12.6170808 C14.5959267,13.1576868 14.8195803,14.019099 14.5446981,14.790915 L12.7806755,19.7439495 C12.5124544,20.4970628 11.7994511,21 11,21 C10.2005489,21 9.48754564,20.4970628 9.21932447,19.7439495 L7.45530189,14.790915 C7.18041974,14.019099 7.40407327,13.1576868 8.01970732,12.6170808 Z" id="矩形备份" stroke="#0D0D14" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill-rule="nonzero" transform="translate(11.000000, 15.500000) scale(1, -1) translate(-11.000000, -15.500000) "></path>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

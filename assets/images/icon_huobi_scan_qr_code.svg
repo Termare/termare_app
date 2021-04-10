@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="38px" height="38px" viewBox="0 0 38 38" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 63.1 (92452) - https://sketch.com -->
+    <title>icon_huobi_scan qr code</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <linearGradient x1="100%" y1="100%" x2="0%" y2="0%" id="linearGradient-1">
+            <stop stop-color="#3B3B4F" offset="0%"></stop>
+            <stop stop-color="#8A8A98" offset="100%"></stop>
+        </linearGradient>
+    </defs>
+    <g id="伙办" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="16伙币" transform="translate(-32.000000, -625.000000)">
+            <g id="编组-2备份-5" transform="translate(16.000000, 606.000000)">
+                <g id="icon_huobi_scan-qr-code" transform="translate(16.000000, 19.000000)">
+                    <rect id="矩形" fill="url(#linearGradient-1)" x="0" y="0" width="38" height="38" rx="8"></rect>
+                    <path d="M29,22.6363636 L29,23.5454545 C29,26.5579168 26.5579168,29 23.5454545,29 L22.3905384,29 M15.3636364,29 L14.4545455,29 C11.4420832,29 9,26.5579168 9,23.5454545 L9,21.7272727 M9,15.3636364 L9,14.4545455 C9,11.4420832 11.4420832,9 14.4545455,9 L15.3636364,9 M22.6363636,9 L23.5454545,9 C26.5579168,9 29,11.4420832 29,14.4545455 L29,15.3636364" id="形状" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round"></path>
+                    <rect id="矩形" fill="#FFFFFF" x="14" y="18" width="10" height="2" rx="1"></rect>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="38px" height="38px" viewBox="0 0 38 38" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 63.1 (92452) - https://sketch.com -->
+    <title>icon_huobi_share</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <linearGradient x1="0%" y1="0%" x2="100%" y2="100%" id="linearGradient-1">
+            <stop stop-color="#3291FF" offset="0%"></stop>
+            <stop stop-color="#1750F4" offset="100%"></stop>
+        </linearGradient>
+    </defs>
+    <g id="伙办" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="16伙币" transform="translate(-32.000000, -536.000000)">
+            <g id="编组-2备份-4" transform="translate(16.000000, 516.000000)">
+                <g id="icon_huobi_share" transform="translate(16.000000, 20.000000)">
+                    <rect id="矩形" fill="url(#linearGradient-1)" x="0" y="0" width="38" height="38" rx="8"></rect>
+                    <g id="编组-4" transform="translate(8.000000, 9.000000)" stroke="#FFFFFF" stroke-linecap="round" stroke-width="2">
+                        <path d="M10,0.769230769 C4.90198692,0.769230769 0.769230769,4.90198692 0.769230769,10 C0.769230769,15.0980131 4.90198692,19.2307692 10,19.2307692 C15.0980131,19.2307692 19.2307692,15.0980131 19.2307692,10" id="路径" transform="translate(10.000000, 10.000000) rotate(5.000000) translate(-10.000000, -10.000000) "></path>
+                        <path d="M10.9230769,10.6757392 C10.9230769,7.61693136 13.4027306,5.13727767 16.4615385,5.13727767" id="路径"></path>
+                        <polyline id="路径-2" stroke-linejoin="round" transform="translate(15.538462, 5.137278) rotate(30.000000) translate(-15.538462, -5.137278) " points="13.6923077 3.29112382 17.3846154 3.29112382 17.3846154 6.98343151"></polyline>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>
