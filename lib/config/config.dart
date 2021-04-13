@@ -1,9 +1,10 @@
-// 要改，获取路径的唯一变量是包名，根据平台返回路径
 class Config {
   Config._();
   static String baseURL =
       inProduction ? 'http://nightmare.fun:9000' : 'http://nightmare.fun:9000';
   static String apiKey = 'Y29tLm5pZ2h0bWFyZQ==';
+
+  // ignore: lines_longer_than_80_chars
   static String basicAuth =
       'Basic Y29tLm5pZ2h0bWFyZS50ZXJtYXJlOmNvbS5uaWdodG1hcmU=';
   static String dataBasePath = '$dataPath/databases';
@@ -13,6 +14,7 @@ class Config {
   static String initFilePath = '$filesPath/init';
   static String usrPath = '$filesPath/usr';
   static String homePath = '$filesPath/home';
+  static String bootstrap = '';
 
   /// 缓存目录
   static String tmpPath = '$usrPath/tmp';
@@ -27,5 +29,7 @@ class Config {
   static const bool isTest = false;
   static const int versionCode = 75; //防止工具箱被反编译更改版本
   static const String version = '2.1.5-7d2b9be8'; //防止工具箱被反编译更改版本
-  static const String packageName = 'com.nightmare.termare';
+  static String packageName = 'com.nightmare.termare';
+  // flutter package名，因为这个会影响assets的路径
+  static String flutterPackage = '';
 }

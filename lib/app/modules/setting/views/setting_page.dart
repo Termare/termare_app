@@ -30,7 +30,7 @@ class _SettingPageState extends State<SettingPage> {
 
   Future<void> execFetch() async {
     final String fetch = await rootBundle.loadString(
-      'assets/text/neofetch.txt',
+      Config.flutterPackage + 'assets/text/neofetch.txt',
     );
     _controller.clear();
     _controller.autoScroll = false;
