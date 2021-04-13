@@ -20,12 +20,11 @@ dependencies:
   cupertino_icons: ^1.0.2
   # 网络访问插件
   dio: ^3.0.3
+
   termare_pty:
-    path: ../../termare-space/termare_pty
+    git: https://github.com/termare/termare_pty
   termare_view:
-    path: ../../termare-space/termare_view
-  dart_pty:
-    path: ../../termare-space/dart_pty
+    git: https://github.com/termare/termare_view
 dev_dependencies:
   flutter_test:
     sdk: flutter
@@ -48,8 +47,5 @@ flutter:
 
   assets:
     - assets/ogg/
-    - assets/images/
     - assets/icons/
     - assets/text/
-    - assets/images/2.0x/
-    - assets/images/3.0x/

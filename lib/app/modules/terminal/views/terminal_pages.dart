@@ -25,8 +25,19 @@ class PtyTermEntity {
 }
 
 class TerminalPages extends StatefulWidget {
-  const TerminalPages({Key key, this.terminalIndex = 0}) : super(key: key);
-  final int terminalIndex;
+  TerminalPages({
+    Key key,
+    this.packageName,
+  }) : super(key: key) {
+    if (packageName != null) {
+      // 改包可能是被其他项目集成的
+      Config.packageName = packageName;
+      Config.flutterPackage = 'packages/termare_app/';
+    }
+  }
+
+  final String packageName;
+
   @override
   _TerminalPagesState createState() => _TerminalPagesState();
 }

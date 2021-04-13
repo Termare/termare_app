@@ -29,3 +29,7 @@ void main() {
   ));
   // Global.instance.initGlobal();
 }
+
+void injectEnvironment() {
+  // NiEW
+}

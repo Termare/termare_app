@@ -63,7 +63,7 @@ class TerminalController extends GetxController {
       column: size.column,
     );
     final TermareController controller = TermareController(
-      fontFamily: 'MenloforPowerline',
+      fontFamily: Config.flutterPackage + 'MenloforPowerline',
       terminalTitle: 'localhost',
     );
     terms.add(
