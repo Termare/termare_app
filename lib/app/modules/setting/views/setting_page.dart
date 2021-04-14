@@ -33,7 +33,7 @@ class _SettingPageState extends State<SettingPage> {
       Config.flutterPackage + 'assets/text/neofetch.txt',
     );
     _controller.clear();
-    _controller.autoScroll = false;
+    _controller.enableAutoScroll();
     writeLock = true;
     for (final String char in fetch.split('')) {
       _controller.write(char);
