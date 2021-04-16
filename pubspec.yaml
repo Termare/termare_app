@@ -29,6 +29,11 @@ dev_dependencies:
   flutter_test:
     sdk: flutter
 
+dependency_overrides:
+  termare_view:
+    path: /Users/nightmare/Desktop/termare-space/termare_view
+
+
 flutter:
   uses-material-design: true
   fonts:

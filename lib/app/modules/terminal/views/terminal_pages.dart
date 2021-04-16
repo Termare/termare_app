@@ -6,6 +6,7 @@ import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:global_repository/global_repository.dart';
 import 'package:termare_app/app/modules/terminal/controllers/terminal_controller.dart';
+import 'package:termare_app/app/modules/terminal/views/terminal_title.dart';
 import 'package:termare_app/app/widgets/termare_view_with_bar.dart';
 import 'package:termare_app/config/config.dart';
 import 'package:provider/provider.dart';
@@ -34,6 +35,10 @@ class TerminalPages extends StatefulWidget {
       Config.packageName = packageName;
       Config.flutterPackage = 'packages/termare_app/';
     }
+    if (Get.arguments != null) {
+      Config.packageName = Get.arguments.toString();
+      Config.flutterPackage = 'packages/termare_app/';
+    }
   }
 
   final String packageName;
@@ -46,20 +51,25 @@ class _TerminalPagesState extends State<TerminalPages>
     with SingleTickerProviderStateMixin {
   TerminalController controller;
   PageController pageController = PageController();
+  TermareController termareController;
   String titleName = '终端[0]';
   @override
   void initState() {
     super.initState();
-    Get.put(TerminalController());
     controller = Get.find();
     if (controller.terms.isEmpty) {
       controller.createPtyTerm();
+    } else {
+      termareController = controller.terms.first.controller;
     }
     pageController.addListener(() {
       print(pageController.page.round());
       // if (pageController.page.toString().split('.').last == '0') {
       if (titleName != '终端[${pageController.page.round()}]') {
         titleName = '终端[${pageController.page.round()}]';
+
+        termareController =
+            controller.terms[pageController.page.round()].controller;
         setState(() {});
       }
       // print(pageController.page);
@@ -90,14 +100,23 @@ class _TerminalPagesState extends State<TerminalPages>
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
-                            Builder(
-                              builder: (_) {
-                                return Text(
-                                  '$titleName ',
+                            Row(
+                              children: [
+                                Text(
+                                  '$titleName -> ',
                                   style: const TextStyle(
-                                      fontWeight: FontWeight.bold),
-                                );
-                              },
+                                    height: 1.0,
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                                ),
+                                Builder(
+                                  builder: (_) {
+                                    return TerminalTitle(
+                                      controller: termareController,
+                                    );
+                                  },
+                                ),
+                              ],
                             ),
                             Row(
                               children: [

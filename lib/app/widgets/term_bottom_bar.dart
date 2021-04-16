@@ -177,7 +177,7 @@ class _BottomItemState extends State<BottomItem> {
           child: Text(
             widget.title,
             style: TextStyle(
-              color: widget.controller.theme.defaultColor,
+              color: widget.controller.theme.defaultFontColor,
               fontWeight: FontWeight.w500,
             ),
           ),

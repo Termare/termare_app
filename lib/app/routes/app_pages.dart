@@ -14,12 +14,12 @@ class AppPages {
 
   static final routes = [
     GetPage(
-      name: _Paths.HOME,
+      name: Routes.HOME,
       page: () => TerminalPages(),
       binding: TerminalBinding(),
     ),
     GetPage(
-      name: _Paths.SETTING,
+      name: Routes.SETTING,
       page: () => SettingPage(),
       binding: SettingBinding(),
     ),

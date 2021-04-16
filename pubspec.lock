@@ -92,7 +92,7 @@ packages:
     description:
       path: "."
       ref: HEAD
-      resolved-ref: "47d757ea5324e675a26a2387b06147a49b1df696"
+      resolved-ref: "1d9db6677778a194a0b6a97ac8da233147589f94"
       url: "https://github.com/termare/dart_pty"
     source: git
     version: "0.0.3"
@@ -328,11 +328,9 @@ packages:
   termare_view:
     dependency: "direct main"
     description:
-      path: "."
-      ref: HEAD
-      resolved-ref: c274c4a63adcf4b4a9b0f413567890910614ddf8
-      url: "https://github.com/termare/termare_view"
-    source: git
+      path: "/Users/nightmare/Desktop/termare-space/termare_view"
+      relative: false
+    source: path
     version: "0.0.2"
   test_api:
     dependency: transitive

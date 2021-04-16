@@ -45,7 +45,7 @@ class TerminalController extends GetxController {
       }
     }
     final Map<String, String> environment = {
-      'TERM': 'screen-256color',
+      'TERM': 'xterm-256color',
       'PATH': PlatformUtil.environment()['PATH'],
     };
     if (Platform.isAndroid) {
@@ -63,9 +63,6 @@ class TerminalController extends GetxController {
     final TermareController controller = TermareController(
       fontFamily: Config.flutterPackage + 'MenloforPowerline',
       terminalTitle: 'localhost',
-      theme: TermareStyles.termux.copyWith(
-        fontSize: 11,
-      ),
     );
     terms.add(
       PtyTermEntity(controller, pseudoTerminal),
