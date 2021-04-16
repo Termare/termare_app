@@ -12,8 +12,6 @@ import 'package:termare_app/config/config.dart';
 import 'package:termare_pty/termare_pty.dart';
 import 'package:termare_view/termare_view.dart';
 
-import 'package:termare_app/app/modules/setting/utils/term_utils.dart';
-
 class TerminalController extends GetxController {
   List<PtyTermEntity> terms = [];
 
@@ -65,6 +63,9 @@ class TerminalController extends GetxController {
     final TermareController controller = TermareController(
       fontFamily: Config.flutterPackage + 'MenloforPowerline',
       terminalTitle: 'localhost',
+      theme: TermareStyles.termux.copyWith(
+        fontSize: 11,
+      ),
     );
     terms.add(
       PtyTermEntity(controller, pseudoTerminal),
