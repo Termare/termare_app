@@ -330,7 +330,7 @@ packages:
     description:
       path: "."
       ref: HEAD
-      resolved-ref: "0b188bf2585d3a71881d156cbdc1a546558262ad"
+      resolved-ref: c274c4a63adcf4b4a9b0f413567890910614ddf8
       url: "https://github.com/termare/termare_view"
     source: git
     version: "0.0.2"

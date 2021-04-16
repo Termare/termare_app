@@ -219,8 +219,6 @@ class _SettingPageState extends State<SettingPage> {
               title: '安装zsh',
               onTap: () async {
                 final PseudoTerminal pseudoTerminal = PseudoTerminal(
-                  row: 53,
-                  column: 49,
                   executable: Platform.isWindows ? 'wsl' : 'bash',
                   workingDirectory: Config.homePath,
                   environment: {
