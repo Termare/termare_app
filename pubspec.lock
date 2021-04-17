@@ -88,13 +88,11 @@ packages:
     source: git
     version: "0.0.1"
   dart_pty:
-    dependency: transitive
+    dependency: "direct overridden"
     description:
-      path: "."
-      ref: HEAD
-      resolved-ref: "1d9db6677778a194a0b6a97ac8da233147589f94"
-      url: "https://github.com/termare/dart_pty"
-    source: git
+      path: "/Users/nightmare/Desktop/termare-space/dart_pty"
+      relative: false
+    source: path
     version: "0.0.3"
   dio:
     dependency: "direct main"
@@ -321,7 +319,7 @@ packages:
     description:
       path: "."
       ref: HEAD
-      resolved-ref: "5921c81f988ffed122b2fbe5d52bcbf3709a5c3c"
+      resolved-ref: "175c9505d13da6a6cc6ab220a4328ad3904034e3"
       url: "https://github.com/termare/termare_pty"
     source: git
     version: "1.0.0+1"
@@ -338,7 +336,7 @@ packages:
       name: test_api
       url: "https://pub.flutter-io.cn"
     source: hosted
-    version: "0.3.0"
+    version: "0.2.19"
   typed_data:
     dependency: transitive
     description:
