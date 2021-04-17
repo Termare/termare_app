@@ -1,0 +1,13 @@
+{
+    "bufferLine": 1000,
+    "enableUtf8": true,
+    "bellWhenEscapeA": false,
+    "vibrationWhenEscapeA": true,
+    "repository": "http://nightmare.fun/termare/",
+    "cmdLine": "login",
+    "initCmd": "",
+    "termType": "xterm-256color",
+    "fontSize": 11,
+    "fontFamily": "MenloforPowerline",
+    "termStyle": "vsCode"
+}
