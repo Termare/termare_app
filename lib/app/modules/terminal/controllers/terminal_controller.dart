@@ -5,6 +5,8 @@ import 'package:dart_pty/dart_pty.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:global_repository/global_repository.dart';
+import 'package:termare_app/app/modules/setting/controllers/setting_controller.dart';
+import 'package:termare_app/app/modules/setting/models_model.dart';
 import 'package:termare_app/app/modules/terminal/views/download_bootstrap_page.dart';
 import 'package:termare_app/app/modules/terminal/views/terminal_pages.dart';
 import 'package:termare_app/app/widgets/termare_view_with_bar.dart';
@@ -15,7 +17,10 @@ import 'package:termare_view/termare_view.dart';
 class TerminalController extends GetxController {
   List<PtyTermEntity> terms = [];
 
+  SettingController settingController = Get.find<SettingController>();
+
   Future<void> createPtyTerm() async {
+    final SettingInfo settingInfo = settingController.settingInfo;
     if (Platform.isAndroid) {
       final File bashFile = File(Config.binPath + '/bash');
       final bool exist = bashFile.existsSync();
@@ -29,41 +34,65 @@ class TerminalController extends GetxController {
       }
     }
     String executable = '';
-    if (Platform.isMacOS) {
-      executable = 'bash';
-    } else if (Platform.isWindows) {
-      executable = 'wsl';
-    } else if (Platform.isAndroid) {
-      if (File('${PlatformUtil.getBinaryPath()}/login').existsSync()) {
-        executable = 'login';
-      } else {
-        executable = 'sh';
-      }
-      final Directory directory = Directory(Config.homePath);
-      if (!directory.existsSync()) {
-        directory.createSync();
+    if (Platform.environment.containsKey('SHELL')) {
+      executable = Platform.environment['SHELL'];
+      executable = executable.replaceAll(RegExp('.*/'), '');
+    } else {
+      if (Platform.isMacOS) {
+        executable = 'bash';
+      } else if (Platform.isWindows) {
+        executable = 'wsl';
+      } else if (Platform.isAndroid) {
+        executable = settingInfo.cmdLine;
+        final Directory directory = Directory(Config.homePath);
+        if (!directory.existsSync()) {
+          directory.createSync();
+        }
       }
     }
     final Map<String, String> environment = {
       'TERM': 'xterm-256color',
       'PATH': PlatformUtil.environment()['PATH'],
     };
+    String workingDirectory = '.';
     if (Platform.isAndroid) {
       environment['HOME'] = Config.homePath;
       environment['TMPDIR'] = Config.tmpPath;
+      workingDirectory = Config.homePath;
     }
-    final TermSize size = TermSize.getTermSize(window.physicalSize);
+    final TermareController controller = TermareController(
+      fontFamily: Config.flutterPackage + settingInfo.fontFamily,
+      terminalTitle: 'localhost',
+      theme: TermareStyle.parse(settingInfo.termStyle).copyWith(
+        fontSize: settingInfo.fontSize.toDouble(),
+      ),
+    );
+    final Size size = window.physicalSize;
+    final double screenWidth = size.width / window.devicePixelRatio;
+    final double screenHeight = size.height / window.devicePixelRatio;
+    controller.setWindowSize(Size(screenWidth, screenHeight));
+    print(
+        '$executable ${Size(screenWidth, screenHeight)} ${controller.row} ${controller.column}');
     final PseudoTerminal pseudoTerminal = PseudoTerminal(
       executable: executable,
-      workingDirectory: Config.homePath,
+      workingDirectory: workingDirectory,
       environment: environment,
-      row: size.row,
-      column: size.column,
+      row: controller.row,
+      // 减一有用的，适配 zsh
+      column: controller.column - 1,
+      arguments: ['-l'],
     );
-    final TermareController controller = TermareController(
-      fontFamily: Config.flutterPackage + 'MenloforPowerline',
-      terminalTitle: 'localhost',
-    );
+    if (settingInfo.initCmd.isNotEmpty) {
+      Future.delayed(Duration(milliseconds: 100), () {
+        pseudoTerminal.write(settingInfo.initCmd + '\n');
+      });
+    }
+    if (settingInfo.vibrationWhenEscapeA) {
+      controller.onBell = () {
+        Feedback.forLongPress(Get.context);
+      };
+    }
+
     terms.add(
       PtyTermEntity(controller, pseudoTerminal),
     );

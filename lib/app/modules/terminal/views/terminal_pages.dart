@@ -7,6 +7,7 @@ import 'package:get/get.dart';
 import 'package:global_repository/global_repository.dart';
 import 'package:termare_app/app/modules/terminal/controllers/terminal_controller.dart';
 import 'package:termare_app/app/modules/terminal/views/terminal_title.dart';
+import 'package:termare_app/app/widgets/custom_icon_button.dart';
 import 'package:termare_app/app/widgets/termare_view_with_bar.dart';
 import 'package:termare_app/config/config.dart';
 import 'package:provider/provider.dart';
@@ -51,25 +52,29 @@ class _TerminalPagesState extends State<TerminalPages>
     with SingleTickerProviderStateMixin {
   TerminalController controller;
   PageController pageController = PageController();
-  TermareController termareController;
+  PageController titleController = PageController();
   String titleName = '终端[0]';
   @override
   void initState() {
     super.initState();
     controller = Get.find();
     if (controller.terms.isEmpty) {
-      controller.createPtyTerm();
-    } else {
-      termareController = controller.terms.first.controller;
+      controller.createPtyTerm().then((value) {
+        setState(() {});
+      });
     }
     pageController.addListener(() {
       print(pageController.page.round());
       // if (pageController.page.toString().split('.').last == '0') {
       if (titleName != '终端[${pageController.page.round()}]') {
         titleName = '终端[${pageController.page.round()}]';
-
-        termareController =
-            controller.terms[pageController.page.round()].controller;
+        titleController.animateToPage(
+          pageController.page.round(),
+          duration: Duration(
+            milliseconds: 300,
+          ),
+          curve: Curves.ease,
+        );
         setState(() {});
       }
       // print(pageController.page);
@@ -79,11 +84,10 @@ class _TerminalPagesState extends State<TerminalPages>
 
   @override
   Widget build(BuildContext context) {
-    // pageController.
     return AnnotatedRegion<SystemUiOverlayStyle>(
       value: SystemUiOverlayStyle.dark,
       child: Material(
-        // color: widget.,
+        // color: Colors.black,
         child: SafeArea(
           child: Scaffold(
             backgroundColor: Colors.transparent,
@@ -95,67 +99,72 @@ class _TerminalPagesState extends State<TerminalPages>
                   children: [
                     SizedBox(
                       height: 36,
+                      width: MediaQuery.of(context).size.width,
                       child: Padding(
                         padding: const EdgeInsets.symmetric(horizontal: 8.0),
                         child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
-                            Row(
-                              children: [
-                                Text(
-                                  '$titleName -> ',
-                                  style: const TextStyle(
-                                    height: 1.0,
-                                    fontWeight: FontWeight.bold,
-                                  ),
-                                ),
-                                Builder(
-                                  builder: (_) {
-                                    return TerminalTitle(
-                                      controller: termareController,
-                                    );
-                                  },
-                                ),
-                              ],
+                            Text(
+                              '$titleName -> ',
+                              style: const TextStyle(
+                                height: 1.0,
+                                fontWeight: FontWeight.bold,
+                              ),
                             ),
-                            Row(
-                              children: [
-                                IconButton(
-                                  icon: const Icon(Icons.filter_none),
-                                  onPressed: () async {
-                                    print(
-                                        'pageController.page-> ${pageController.page}');
-                                    final int index = await Get.to<int>(
-                                      QuarkWindowCheck(
-                                        children:
-                                            controller.getPtyTermsForCheck(),
-                                        page: pageController.page.toInt(),
-                                      ),
-                                    );
-                                    if (index != null) {
-                                      pageController.jumpToPage(index);
-                                    }
-                                  },
-                                ),
-                                IconButton(
-                                  icon: const Icon(Icons.add),
-                                  onPressed: () async {
-                                    await controller.createPtyTerm();
-                                    setState(() {});
-                                    pageController.nextPage(
-                                      duration:
-                                          const Duration(milliseconds: 300),
-                                      curve: Curves.ease,
-                                    );
-                                  },
-                                ),
-                                IconButton(
-                                  icon: const Icon(Icons.settings),
-                                  onPressed: () {
-                                    Get.to(SettingPage());
-                                  },
-                                ),
-                              ],
+                            Expanded(
+                              child: LayoutBuilder(
+                                builder: (_, BoxConstraints constraints) {
+                                  print('$constraints');
+                                  return SizedBox(
+                                    height: 36,
+                                    child: PageView.builder(
+                                      physics: NeverScrollableScrollPhysics(),
+                                      itemCount: controller.terms.length,
+                                      controller: titleController,
+                                      itemBuilder: (c, i) {
+                                        return TerminalTitle(
+                                          controller:
+                                              controller.terms[i].controller,
+                                        );
+                                      },
+                                    ),
+                                  );
+                                },
+                              ),
+                            ),
+                            NiIconButton(
+                              child: const Icon(Icons.filter_none),
+                              onTap: () async {
+                                print(
+                                    'pageController.page-> ${pageController.page}');
+                                final int index = await Get.to<int>(
+                                  QuarkWindowCheck(
+                                    children: controller.getPtyTermsForCheck(),
+                                    page: pageController.page.toInt(),
+                                  ),
+                                );
+                                if (index != null) {
+                                  pageController.jumpToPage(index);
+                                }
+                              },
+                            ),
+                            NiIconButton(
+                              child: const Icon(Icons.add),
+                              onTap: () async {
+                                await controller.createPtyTerm();
+                                setState(() {});
+                                pageController.animateToPage(
+                                  controller.terms.length - 1,
+                                  duration: const Duration(milliseconds: 300),
+                                  curve: Curves.ease,
+                                );
+                              },
+                            ),
+                            NiIconButton(
+                              child: const Icon(Icons.settings),
+                              onTap: () {
+                                Get.to(SettingPage());
+                              },
                             ),
                           ],
                         ),
