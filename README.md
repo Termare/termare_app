@@ -1,6 +1,6 @@
 # termare_app(开源版)
 
-支持 windows/macos/linux/android 的终端模拟器，在 android 平台上，有独立的源。
+支持 macos/linux/android 的终端模拟器，在 android 平台上，有独立的源。
 
 参考 termux/Android-Terminal-Emulator 等运行在安卓平台的终端模拟器以
 及运行在浏览器的终端模拟器组件 xterm.js 从而实现的多平台的终端模拟器。
@@ -17,6 +17,10 @@
 [termare官网](http://nightmare.fun/termarehome/):
 
 以下内容来自仓库 termux，因为相关资源同样适用于本仓库。
+
+## PR 相关
+
+如果您对该项目提出合并请求，请尽量使代码为当前的代码风格。
 
 ## Terminal resources
 
