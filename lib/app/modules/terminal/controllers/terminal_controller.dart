@@ -83,7 +83,7 @@ class TerminalController extends GetxController {
       arguments: ['-l'],
     );
     if (settingInfo.initCmd.isNotEmpty) {
-      Future.delayed(Duration(milliseconds: 100), () {
+      Future.delayed(const Duration(milliseconds: 100), () {
         pseudoTerminal.write(settingInfo.initCmd + '\n');
       });
     }
