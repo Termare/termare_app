@@ -32,7 +32,8 @@ dev_dependencies:
 dependency_overrides:
   termare_view:
     path: /Users/nightmare/Desktop/termare-space/termare_view
-
+  dart_pty:
+    path: /Users/nightmare/Desktop/termare-space/dart_pty
 
 flutter:
   uses-material-design: true
@@ -49,8 +50,12 @@ flutter:
     - family: MenloforPowerline
       fonts:
         - asset: assets/fonts/MenloforPowerline.ttf
+    - family: DroidSansMono
+      fonts:
+        - asset: assets/fonts/DroidSansMono.ttf
 
   assets:
     - assets/ogg/
     - assets/icons/
+    - assets/lib/
     - assets/text/
