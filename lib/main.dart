@@ -13,13 +13,16 @@ void main() {
   PlatformUtil.setPackageName('com.nightmare.termare');
   if (Platform.isMacOS || Platform.isWindows) {
     Config.dataPath = PlatformUtil.getDataPath();
+    print(Platform.resolvedExecutable);
   }
   runApp(
-    GetMaterialApp(
-      title: 'Termare开源版',
-      initialRoute: AppPages.INITIAL,
-      getPages: AppPages.routes,
-      defaultTransition: Transition.fade,
+    NiToastNew(
+      child: GetMaterialApp(
+        title: 'Termare开源版',
+        initialRoute: AppPages.INITIAL,
+        getPages: AppPages.routes,
+        defaultTransition: Transition.fade,
+      ),
     ),
   );
   SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(
