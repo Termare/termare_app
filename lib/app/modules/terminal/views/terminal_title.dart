@@ -30,6 +30,17 @@ class _TerminalTitleState extends State<TerminalTitle> {
 
   @override
   Widget build(BuildContext context) {
-    return Text(widget.controller?.terminalTitle ?? '');
+    return SingleChildScrollView(
+      scrollDirection: Axis.horizontal,
+      child: Center(
+        child: Text(
+          widget.controller?.terminalTitle ?? '',
+          style: const TextStyle(
+            height: 1.0,
+            fontWeight: FontWeight.bold,
+          ),
+        ),
+      ),
+    );
   }
 }
