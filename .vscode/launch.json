@@ -5,6 +5,13 @@
     "version": "0.2.0",
     "configurations": [
         {
+            "name": "Linux",
+            "type": "dart",
+            "request": "launch",
+            "program": "lib/main.dart",
+            "deviceId": "linux"
+        },
+        {
             "name": "Mac Desktop",
             "request": "launch",
             "type": "dart",

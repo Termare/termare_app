@@ -17,7 +17,7 @@ extension DefineFunc on PseudoTerminal {
     String tmpFilePath,
   }) async {
     tmpFilePath ??=
-        PlatformUtil.getTmpPath() + '${Platform.pathSeparator}defineTermFunc';
+        PlatformUtil.getDataPath() + '${Platform.pathSeparator}defineTermFunc';
     Log.d('定义函数中...--->$tmpFilePath');
 
     final File tmpFile = File(tmpFilePath);

@@ -63,6 +63,8 @@ class TerminalController extends GetxController {
       environment['HOME'] = Config.homePath;
       environment['TMPDIR'] = Config.tmpPath;
       workingDirectory = Config.homePath;
+    } else {
+      environment['HOME'] = PlatformUtil.environment()['HOME'];
     }
     final TermareController controller = TermareController(
       fontFamily: Config.flutterPackage + settingInfo.fontFamily,

@@ -31,7 +31,7 @@ dev_dependencies:
 
 dependency_overrides:
   termare_view:
-    path: /Users/nightmare/Desktop/termare-space/termare_view
+    path: /home/nightmare/文档/termare/termare_view
   # dart_pty:
   #   path: /Users/nightmare/Desktop/termare-space/dart_pty
 

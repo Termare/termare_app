@@ -8,6 +8,8 @@ import 'package:global_repository/global_repository.dart';
 import 'package:termare_app/app/modules/setting/controllers/setting_controller.dart';
 import 'package:termare_app/app/modules/setting/utils/term_utils.dart';
 import 'package:termare_app/app/modules/setting/views/powerlevel10k_addr.dart';
+import 'package:termare_app/app/modules/terminal/controllers/terminal_controller.dart';
+import 'package:termare_app/app/modules/terminal/views/terminal_pages.dart';
 import 'package:termare_app/app/widgets/pop_button.dart';
 import 'package:termare_app/config/config.dart';
 import 'package:termare_view/termare_view.dart';
@@ -158,7 +160,14 @@ class _SettingPageState extends State<SettingPage> {
                   onChanged: (size) {
                     controller.settingInfo.fontSize = size.toInt();
                     controller.update();
-
+                    final TerminalController terminalController =
+                        Get.find<TerminalController>();
+                    for (final PtyTermEntity entity
+                        in terminalController.terms) {
+                      entity.controller.setFontSize(
+                        controller.settingInfo.fontSize.toDouble(),
+                      );
+                    }
                     controller.saveToLocal();
                     preview.setFontSize(
                       controller.settingInfo.fontSize.toDouble(),

@@ -12,7 +12,7 @@ import 'config/config.dart';
 
 void main() {
   PlatformUtil.setPackageName('com.nightmare.termare');
-  if (Platform.isMacOS || Platform.isWindows) {
+  if (PlatformUtil.isDesktop()) {
     Config.dataPath = PlatformUtil.getDataPath();
   }
   runApp(

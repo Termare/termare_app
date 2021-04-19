@@ -83,7 +83,7 @@ packages:
     description:
       path: "."
       ref: dart
-      resolved-ref: da6f0a5cfa6e23d930d23fdd5f5620a00fd5ef4e
+      resolved-ref: "01e0b8d295b91834f5f19d45ccadc1d6e4151173"
       url: "https://github.com/nightmare-space/custom_log"
     source: git
     version: "0.0.1"
@@ -328,7 +328,7 @@ packages:
   termare_view:
     dependency: "direct main"
     description:
-      path: "/Users/nightmare/Desktop/termare-space/termare_view"
+      path: "/home/nightmare/文档/termare/termare_view"
       relative: false
     source: path
     version: "0.0.2"
@@ -338,7 +338,7 @@ packages:
       name: test_api
       url: "https://pub.flutter-io.cn"
     source: hosted
-    version: "0.2.19"
+    version: "0.3.0"
   typed_data:
     dependency: transitive
     description:

@@ -255,6 +255,7 @@ class SettingController extends GetxController {
               height: 8,
             ),
             Wrap(
+              spacing: 8.0,
               children: [
                 TextButton(
                   onPressed: () {
@@ -381,6 +382,9 @@ class SettingController extends GetxController {
   }
 
   void readLocalStorage() {
+    if (!Directory(Config.homePath).existsSync()) {
+      Directory(Config.homePath).create(recursive: true);
+    }
     print('filePath -> $filePath');
     File file = File(filePath);
     if (file.existsSync()) {
