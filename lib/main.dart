@@ -1,3 +1,4 @@
+import 'dart:developer';
 import 'dart:io';
 
 import 'package:flutter/material.dart';
@@ -13,7 +14,6 @@ void main() {
   PlatformUtil.setPackageName('com.nightmare.termare');
   if (Platform.isMacOS || Platform.isWindows) {
     Config.dataPath = PlatformUtil.getDataPath();
-    print(Platform.resolvedExecutable);
   }
   runApp(
     NiToastNew(

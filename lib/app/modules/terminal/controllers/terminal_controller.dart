@@ -20,11 +20,15 @@ class TerminalController extends GetxController {
   SettingController settingController = Get.find<SettingController>();
 
   Future<void> createPtyTerm() async {
+    bool isFirst = false;
     final SettingInfo settingInfo = settingController.settingInfo;
     if (Platform.isAndroid) {
       final File bashFile = File(Config.binPath + '/bash');
       final bool exist = bashFile.existsSync();
       if (!exist) {
+        // 初始化后 bash 应该存在
+        isFirst = true;
+        // 这个 await 为了不弹太快
         await Future.delayed(const Duration(milliseconds: 300));
         await showCustomDialog<void>(
           bval: false,
@@ -82,11 +86,14 @@ class TerminalController extends GetxController {
       column: controller.column - 1,
       arguments: ['-l'],
     );
-    if (settingInfo.initCmd.isNotEmpty) {
-      Future.delayed(const Duration(milliseconds: 100), () {
+    Future.delayed(const Duration(milliseconds: 100), () {
+      if (settingInfo.initCmd.isNotEmpty) {
         pseudoTerminal.write(settingInfo.initCmd + '\n');
-      });
-    }
+      }
+      if (isFirst) {
+        pseudoTerminal.write('apt update' '\n');
+      }
+    });
     if (settingInfo.vibrationWhenEscapeA) {
       controller.onBell = () {
         Feedback.forLongPress(Get.context);
