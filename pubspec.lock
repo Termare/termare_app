@@ -88,11 +88,13 @@ packages:
     source: git
     version: "0.0.1"
   dart_pty:
-    dependency: "direct overridden"
+    dependency: transitive
     description:
-      path: "/Users/nightmare/Desktop/termare-space/dart_pty"
-      relative: false
-    source: path
+      path: "."
+      ref: HEAD
+      resolved-ref: "06341dd64936e90df97e61628d27b8e210ec85ad"
+      url: "https://github.com/termare/dart_pty"
+    source: git
     version: "0.0.3"
   dio:
     dependency: "direct main"
@@ -336,7 +338,7 @@ packages:
       name: test_api
       url: "https://pub.flutter-io.cn"
     source: hosted
-    version: "0.2.19"
+    version: "0.3.0"
   typed_data:
     dependency: transitive
     description:

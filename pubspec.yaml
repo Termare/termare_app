@@ -32,8 +32,8 @@ dev_dependencies:
 dependency_overrides:
   termare_view:
     path: /Users/nightmare/Desktop/termare-space/termare_view
-  dart_pty:
-    path: /Users/nightmare/Desktop/termare-space/dart_pty
+  # dart_pty:
+  #   path: /Users/nightmare/Desktop/termare-space/dart_pty
 
 flutter:
   uses-material-design: true

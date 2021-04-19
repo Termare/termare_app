@@ -1,6 +1,5 @@
 import 'dart:convert';
 import 'dart:io';
-
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:global_repository/global_repository.dart';
@@ -21,7 +20,7 @@ class SettingController extends GetxController {
 
   void changeRepository() {
     // Get.dialog(Text('data'));
-    TextEditingController controller = TextEditingController(
+    final TextEditingController controller = TextEditingController(
       text: settingInfo.repository,
     );
     showCustomDialog(
