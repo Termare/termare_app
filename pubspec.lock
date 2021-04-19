@@ -328,7 +328,7 @@ packages:
   termare_view:
     dependency: "direct main"
     description:
-      path: "/home/nightmare/文档/termare/termare_view"
+      path: "/Users/nightmare/Desktop/termare-space/termare_view"
       relative: false
     source: path
     version: "0.0.2"
@@ -338,7 +338,7 @@ packages:
       name: test_api
       url: "https://pub.flutter-io.cn"
     source: hosted
-    version: "0.3.0"
+    version: "0.2.19"
   typed_data:
     dependency: transitive
     description:
