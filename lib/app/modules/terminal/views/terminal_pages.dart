@@ -85,17 +85,18 @@ class _TerminalPagesState extends State<TerminalPages>
   @override
   Widget build(BuildContext context) {
     return AnnotatedRegion<SystemUiOverlayStyle>(
-      value: SystemUiOverlayStyle.light,
-      child: SafeArea(
-        child: Scaffold(
-          backgroundColor: Colors.transparent,
-          body: GetBuilder<TerminalController>(
+      value: SystemUiOverlayStyle.dark,
+      child: Scaffold(
+        backgroundColor: Color(0xfff3efef),
+        body: SafeArea(
+          child: GetBuilder<TerminalController>(
             init: TerminalController(),
             builder: (_) {
               return Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Material(
+                    color: Color(0xfff3efef),
                     child: SizedBox(
                       height: 36,
                       width: MediaQuery.of(context).size.width,
