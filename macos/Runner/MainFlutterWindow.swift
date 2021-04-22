@@ -10,7 +10,7 @@ class MainFlutterWindow: NSWindow {
 
     RegisterGeneratedPlugins(registry: flutterViewController)
          /* Hiding the window titlebar */
-    self.titleVisibility = NSWindow.TitleVisibility.hidden;
+    // self.titleVisibility = NSWindow.TitleVisibility.hidden;
     self.titlebarAppearsTransparent = true;
     self.isMovableByWindowBackground = true;
 //     self.standardWindowButton(NSWindow.ButtonType.miniaturizeButton)?.isEnabled = false;
