@@ -305,12 +305,12 @@ class _SettingPageState extends State<SettingPage> {
                     }
                     final PseudoTerminal pseudoTerminal = PseudoTerminal(
                       executable: Platform.isWindows ? 'wsl' : 'bash',
-                      workingDirectory: Config.homePath,
+                      workingDirectory: RuntimeEnvir.homePath,
                       environment: {
                         'TERM': 'screen-256color',
-                        'PATH':
-                            '${Config.binPath}:' + Platform.environment['PATH'],
-                        'HOME': Config.homePath,
+                        'PATH': '${RuntimeEnvir.binPath}:' +
+                            Platform.environment['PATH'],
+                        'HOME': RuntimeEnvir.homePath,
                       },
                       arguments: [],
                     );
@@ -355,12 +355,12 @@ class _SettingPageState extends State<SettingPage> {
                     }
                     final PseudoTerminal pseudoTerminal = PseudoTerminal(
                       executable: Platform.isWindows ? 'wsl' : 'bash',
-                      workingDirectory: Config.homePath,
+                      workingDirectory: RuntimeEnvir.homePath,
                       environment: {
                         'TERM': 'screen-256color',
-                        'PATH':
-                            '${Config.binPath}:' + Platform.environment['PATH'],
-                        'HOME': Config.homePath,
+                        'PATH': '${RuntimeEnvir.binPath}:' +
+                            Platform.environment['PATH'],
+                        'HOME': RuntimeEnvir.homePath,
                       },
                       arguments: [],
                     );
@@ -377,7 +377,7 @@ class _SettingPageState extends State<SettingPage> {
                       exec: 'install_powerlevel10k',
                       pseudoTerminal: pseudoTerminal,
                     );
-                    final File zsh = File('${Config.homePath}/.zshrc');
+                    final File zsh = File('${RuntimeEnvir.homePath}/.zshrc');
                     String zshRaw = await zsh.readAsString();
                     zshRaw = zshRaw.replaceAll(
                       RegExp('ZSH_THEME.*'),

@@ -9,7 +9,7 @@ import 'package:termare_app/config/config.dart';
 import 'package:termare_pty/termare_pty.dart';
 import 'package:termare_view/termare_view.dart';
 
-String termLockFilePath = '${Config.usrPath}/tmp/termare_pop_lock';
+String termLockFilePath = '${RuntimeEnvir.usrPath}/tmp/termare_pop_lock';
 
 extension DefineFunc on PseudoTerminal {
   Future<void> defineTermFunc({

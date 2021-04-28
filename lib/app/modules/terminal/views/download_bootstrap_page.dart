@@ -29,7 +29,7 @@ class _DownloadFile extends StatefulWidget {
 class _DownloadFileState extends State<_DownloadFile> {
   final Dio dio = Dio();
   Response<String> response;
-  final String filesPath = Config.usrPath;
+  final String filesPath = RuntimeEnvir.usrPath;
   List<String> androidAdbFiles = [
     'https://nightmare-my.oss-cn-beijing.aliyuncs.com/Termare/bootstrap-aarch64.zip',
   ];
@@ -79,10 +79,14 @@ class _DownloadFileState extends State<_DownloadFile> {
       // print(filename);
       if (file.isFile) {
         final data = file.content as List<int>;
-        await File('${Config.usrPath}/' + filename).create(recursive: true);
-        await File('${Config.usrPath}/' + filename).writeAsBytes(data);
+        await File('${RuntimeEnvir.usrPath}/' + filename).create(
+          recursive: true,
+        );
+        await File('${RuntimeEnvir.usrPath}/' + filename).writeAsBytes(data);
       } else {
-        Directory('${Config.usrPath}/' + filename).create(recursive: true);
+        Directory('${RuntimeEnvir.usrPath}/' + filename).create(
+          recursive: true,
+        );
       }
       count++;
       fileDownratio = count / total;
@@ -94,7 +98,7 @@ class _DownloadFileState extends State<_DownloadFile> {
     fileDownratio = null;
     setState(() {});
     await exec('''
-    cd ${Config.usrPath}/
+    cd ${RuntimeEnvir.usrPath}/
     for line in `cat SYMLINKS.txt`
     do
       OLD_IFS="\$IFS"
@@ -104,9 +108,9 @@ class _DownloadFileState extends State<_DownloadFile> {
       ln -s \${arr[0]} \${arr[3]}
     done
     rm -rf SYMLINKS.txt
-    chmod -R 0777 ${Config.binPath}/*
-    chmod -R 0777 ${Config.usrPath}/libexec/* 2>/dev/null
-    chmod -R 0777 ${Config.usrPath}/lib/apt/methods/* 2>/dev/null
+    chmod -R 0777 ${RuntimeEnvir.binPath}/*
+    chmod -R 0777 ${RuntimeEnvir.usrPath}/libexec/* 2>/dev/null
+    chmod -R 0777 ${RuntimeEnvir.usrPath}/lib/apt/methods/* 2>/dev/null
     ''');
   }
 

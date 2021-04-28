@@ -6,12 +6,11 @@ import 'package:global_repository/global_repository.dart';
 import 'package:termare_app/app/modules/setting/models_model.dart';
 import 'package:termare_app/app/modules/terminal/controllers/terminal_controller.dart';
 import 'package:termare_app/app/modules/terminal/views/terminal_pages.dart';
-import 'package:termare_app/config/config.dart';
 import 'package:termare_view/termare_view.dart';
 
 class SettingController extends GetxController {
   SettingInfo settingInfo;
-  String filePath = Config.homePath + '/.termare_setting';
+  String filePath = RuntimeEnvir.homePath + '/.termare_setting';
   @override
   void onInit() {
     readLocalStorage();
@@ -382,8 +381,8 @@ class SettingController extends GetxController {
   }
 
   void readLocalStorage() {
-    if (!Directory(Config.homePath).existsSync()) {
-      Directory(Config.homePath).create(recursive: true);
+    if (!Directory(RuntimeEnvir.homePath).existsSync()) {
+      Directory(RuntimeEnvir.homePath).create(recursive: true);
     }
     print('filePath -> $filePath');
     File file = File(filePath);

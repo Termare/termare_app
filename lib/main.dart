@@ -8,12 +8,11 @@ import 'package:get/get.dart';
 import 'package:global_repository/global_repository.dart';
 
 import 'app/routes/app_pages.dart';
-import 'config/config.dart';
 
 void main() {
   PlatformUtil.setPackageName('com.nightmare.termare');
   if (PlatformUtil.isDesktop()) {
-    Config.dataPath = PlatformUtil.getDataPath();
+    RuntimeEnvir.initEnvirForDesktop();
   }
   runApp(
     NiToastNew(

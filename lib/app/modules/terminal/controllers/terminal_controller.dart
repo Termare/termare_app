@@ -23,7 +23,7 @@ class TerminalController extends GetxController {
     bool isFirst = false;
     final SettingInfo settingInfo = settingController.settingInfo;
     if (Platform.isAndroid) {
-      final File bashFile = File(Config.binPath + '/bash');
+      final File bashFile = File(RuntimeEnvir.binPath + '/bash');
       final bool exist = bashFile.existsSync();
       if (!exist) {
         // 初始化后 bash 应该存在
@@ -48,7 +48,7 @@ class TerminalController extends GetxController {
         executable = 'wsl';
       } else if (Platform.isAndroid) {
         executable = settingInfo.cmdLine;
-        final Directory directory = Directory(Config.homePath);
+        final Directory directory = Directory(RuntimeEnvir.homePath);
         if (!directory.existsSync()) {
           directory.createSync();
         }
@@ -60,9 +60,9 @@ class TerminalController extends GetxController {
     };
     String workingDirectory = '.';
     if (Platform.isAndroid) {
-      environment['HOME'] = Config.homePath;
-      environment['TMPDIR'] = Config.tmpPath;
-      workingDirectory = Config.homePath;
+      environment['HOME'] = RuntimeEnvir.homePath;
+      environment['TMPDIR'] = RuntimeEnvir.tmpPath;
+      workingDirectory = RuntimeEnvir.homePath;
     } else {
       environment['HOME'] = PlatformUtil.environment()['HOME'];
     }
