@@ -108,9 +108,9 @@ class _DownloadFileState extends State<_DownloadFile> {
       ln -s \${arr[0]} \${arr[3]}
     done
     rm -rf SYMLINKS.txt
-    chmod -R 0777 ${RuntimeEnvir.binPath}/*
-    chmod -R 0777 ${RuntimeEnvir.usrPath}/libexec/* 2>/dev/null
-    chmod -R 0777 ${RuntimeEnvir.usrPath}/lib/apt/methods/* 2>/dev/null
+    chmod -R 0700 ${RuntimeEnvir.binPath}/*
+    chmod -R 0700 ${RuntimeEnvir.usrPath}/libexec/* 2>/dev/null
+    chmod -R 0700 ${RuntimeEnvir.usrPath}/lib/apt/methods/* 2>/dev/null
     ''');
   }
 
