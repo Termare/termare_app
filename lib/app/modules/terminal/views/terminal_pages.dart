@@ -1,21 +1,18 @@
-import 'dart:io';
 import 'dart:ui';
+
 import 'package:dart_pty/dart_pty.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
-import 'package:global_repository/global_repository.dart';
 import 'package:termare_app/app/modules/terminal/controllers/terminal_controller.dart';
 import 'package:termare_app/app/modules/terminal/views/terminal_title.dart';
 import 'package:termare_app/app/widgets/custom_icon_button.dart';
-import 'package:termare_app/app/widgets/termare_view_with_bar.dart';
 import 'package:termare_app/config/config.dart';
-import 'package:provider/provider.dart';
 import 'package:termare_pty/termare_pty.dart';
 import 'package:termare_view/termare_view.dart';
-import 'download_bootstrap_page.dart';
-import 'quark_window_check.dart';
+
 import '../../setting/views/setting_page.dart';
+import 'quark_window_check.dart';
 
 class PtyTermEntity {
   PtyTermEntity(

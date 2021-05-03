@@ -1,11 +1,8 @@
 import 'dart:io';
-
-import 'package:custom_log/custom_log.dart';
 import 'package:dart_pty/dart_pty.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:global_repository/global_repository.dart';
-import 'package:termare_app/config/config.dart';
 import 'package:termare_pty/termare_pty.dart';
 import 'package:termare_view/termare_view.dart';
 

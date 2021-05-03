@@ -13,6 +13,8 @@ void main() {
   PlatformUtil.setPackageName('com.nightmare.termare');
   if (PlatformUtil.isDesktop()) {
     RuntimeEnvir.initEnvirForDesktop();
+  } else {
+    RuntimeEnvir.initEnvirWithPackageName('com.nightmare.termare');
   }
   runApp(
     NiToastNew(

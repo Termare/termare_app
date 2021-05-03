@@ -7,10 +7,6 @@ environment:
   sdk: ">=2.7.0 <3.0.0"
 
 dependencies:
-  custom_log:
-    git:
-      url: https://github.com/nightmare-space/custom_log
-      ref: dart
   archive: ^2.0.13
   get: 4.1.3
   flutter:
