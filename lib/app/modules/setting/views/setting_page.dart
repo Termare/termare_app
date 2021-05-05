@@ -29,17 +29,8 @@ class _SettingPageState extends State<SettingPage> {
       fontSize: 8,
     ),
   );
-  final TermareController preview = TermareController(
-    theme: TermareStyles.vsCode.copyWith(
-      fontSize: 11,
-    ),
-  )
-    ..write(
-      '    字体预览 font preview\n' +
-          '    [30m[40m   [31m[41m   [32m[42m   [33m[43m   [34m[44m   [35m[45m   [36m[46m   [37m[47m   [m\n'
-              '    [38;5;8m[48;5;8m   [38;5;9m[48;5;9m   [38;5;10m[48;5;10m   [38;5;11m[48;5;11m   [38;5;12m[48;5;12m   [38;5;13m[48;5;13m   [38;5;14m[48;5;14m   [38;5;15m[48;5;15m   [m',
-    )
-    ..showCursor = false;
+  TermareController preview;
+
   bool writeLock = false;
 
   SettingController controller = Get.find<SettingController>();
@@ -47,6 +38,17 @@ class _SettingPageState extends State<SettingPage> {
   @override
   void initState() {
     super.initState();
+    preview = TermareController(
+      theme: TermareStyles.vsCode.copyWith(
+        fontSize: controller.settingInfo.fontSize.toDouble(),
+      ),
+    )
+      ..write(
+        '    字体预览 font preview\n' +
+            '    [30m[40m   [31m[41m   [32m[42m   [33m[43m   [34m[44m   [35m[45m   [36m[46m   [37m[47m   [m\n'
+                '    [38;5;8m[48;5;8m   [38;5;9m[48;5;9m   [38;5;10m[48;5;10m   [38;5;11m[48;5;11m   [38;5;12m[48;5;12m   [38;5;13m[48;5;13m   [38;5;14m[48;5;14m   [38;5;15m[48;5;15m   [m',
+      )
+      ..showCursor = false;
     execFetch();
   }
 
@@ -385,6 +387,43 @@ class _SettingPageState extends State<SettingPage> {
                     );
                     await zsh.writeAsString(zshRaw);
                     // Get.to(page)
+                  },
+                ),
+                SettingItem(
+                  title: '安装 zsh-autosuggestions',
+                  subTitle: '自动键入相关命令，处理配置文件',
+                  onTap: () async {
+                    final PseudoTerminal pseudoTerminal = PseudoTerminal(
+                      executable: Platform.isWindows ? 'wsl' : 'bash',
+                      workingDirectory: RuntimeEnvir.homePath,
+                      environment: {
+                        'TERM': 'screen-256color',
+                        'PATH': '${RuntimeEnvir.binPath}:' +
+                            Platform.environment['PATH'],
+                        'HOME': RuntimeEnvir.homePath,
+                      },
+                      arguments: [],
+                    );
+                    await pseudoTerminal.defineTermFunc(
+                      func: '''
+                  function install_powerlevel10k(){
+                    git clone git://github.com/zsh-users/zsh-autosuggestions \${ZSH_CUSTOM:-\$HOME/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
+                  }
+                  ''',
+                    );
+                    await TermUtils.openTerm2(
+                      context: context,
+                      controller: TermareController(),
+                      exec: 'install_powerlevel10k',
+                      pseudoTerminal: pseudoTerminal,
+                    );
+                    final File zsh = File('${RuntimeEnvir.homePath}/.zshrc');
+                    String zshRaw = await zsh.readAsString();
+                    zshRaw = zshRaw.replaceAll(
+                      RegExp('plugins=.*'),
+                      'plugins=(git zsh-autosuggestions)',
+                    );
+                    await zsh.writeAsString(zshRaw);
                   },
                 ),
               ],
