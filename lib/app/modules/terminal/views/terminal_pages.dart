@@ -21,6 +21,20 @@ class PtyTermEntity {
   );
   final TermareController controller;
   final PseudoTerminal pseudoTerminal;
+  @override
+  bool operator ==(dynamic other) {
+    // 判断是否是非
+    if (other is! TermareController) {
+      return false;
+    }
+    if (other is TermareController) {
+      return other.hashCode == hashCode;
+    }
+    return false;
+  }
+
+  @override
+  int get hashCode => pseudoTerminal.pseudoTerminalId.hashCode;
 }
 
 class TerminalPages extends StatefulWidget {
