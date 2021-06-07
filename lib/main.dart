@@ -10,7 +10,6 @@ import 'package:global_repository/global_repository.dart';
 import 'app/routes/app_pages.dart';
 
 void main() {
-  PlatformUtil.setPackageName('com.nightmare.termare');
   if (PlatformUtil.isDesktop()) {
     RuntimeEnvir.initEnvirForDesktop();
   } else {

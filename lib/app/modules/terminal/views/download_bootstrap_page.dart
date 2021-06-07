@@ -1,9 +1,10 @@
 import 'dart:io';
+
 import 'package:archive/archive.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:global_repository/global_repository.dart';
-import 'package:termare_app/config/config.dart';
+import 'package:path/path.dart' as p;
 
 class DownloadBootPage extends StatefulWidget {
   @override
@@ -43,8 +44,8 @@ class _DownloadFileState extends State<_DownloadFile> {
       response.headers.value('content-length'),
     ); //得到服务器文件返回的字节大小
     // final String _human = getFileSize(_fullByte); //拿到可读的文件大小返回给用户
-    print('fullByte======$fullByte ${PlatformUtil.getFileName(urlPath)}');
-    final String savePath = filesPath + '/' + PlatformUtil.getFileName(urlPath);
+    print('fullByte======$fullByte ${p.basename(urlPath)}');
+    final String savePath = filesPath + '/' + p.basename(urlPath);
     // print(savePath);
     await dio.download(
       urlPath,
@@ -127,7 +128,7 @@ class _DownloadFileState extends State<_DownloadFile> {
       needDownloadFile = androidAdbFiles;
     }
     for (final String urlPath in needDownloadFile) {
-      title = '下载 ${PlatformUtil.getFileName(urlPath)} 中...';
+      title = '下载 ${p.basename(urlPath)} 中...';
       setState(() {});
       await downloadFile(urlPath);
     }
