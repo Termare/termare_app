@@ -30,9 +30,4 @@ void main() {
     systemNavigationBarColor: Colors.transparent,
     systemNavigationBarDividerColor: Colors.transparent,
   ));
-  // Global.instance.initGlobal();
-}
-
-void injectEnvironment() {
-  // NiEW
 }
