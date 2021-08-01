@@ -41,7 +41,7 @@ class _DownloadFileState extends State<_DownloadFile> {
     print(urlPath);
     response = await dio.head<String>(urlPath);
     final int fullByte = int.tryParse(
-      response.headers.value('content-length'),
+      response.headers.value('content-length').toString(),
     ); //得到服务器文件返回的字节大小
     // final String _human = getFileSize(_fullByte); //拿到可读的文件大小返回给用户
     print('fullByte======$fullByte ${p.basename(urlPath)}');

@@ -314,7 +314,7 @@ class _SettingPageState extends State<SettingPage> {
                             Platform.environment['PATH'],
                         'HOME': RuntimeEnvir.homePath,
                       },
-                      arguments: [],
+                      arguments: ['-l'],
                     );
                     await pseudoTerminal.defineTermFunc(
                       func: '''
@@ -364,7 +364,7 @@ class _SettingPageState extends State<SettingPage> {
                             Platform.environment['PATH'],
                         'HOME': RuntimeEnvir.homePath,
                       },
-                      arguments: [],
+                      arguments: ['-l'],
                     );
                     await pseudoTerminal.defineTermFunc(
                       func: '''
@@ -402,7 +402,7 @@ class _SettingPageState extends State<SettingPage> {
                             Platform.environment['PATH'],
                         'HOME': RuntimeEnvir.homePath,
                       },
-                      arguments: [],
+                      arguments: ['-l'],
                     );
                     await pseudoTerminal.defineTermFunc(
                       func: '''

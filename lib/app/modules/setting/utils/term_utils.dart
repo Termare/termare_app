@@ -27,15 +27,15 @@ extension DefineFunc on PseudoTerminal {
         write(element);
       },
     );
-    Log.d('script -> source ${p.basename(tmpFilePath)}');
-    Log.d('rm -rf ${p.basename(tmpFilePath)}');
-    'source ${p.basename(tmpFilePath)}\n'.split('').forEach(
+    Log.d('script -> source $tmpFilePath');
+    Log.d('rm -rf $tmpFilePath');
+    'source $tmpFilePath\n'.split('').forEach(
       (String element) {
         write(element);
       },
     );
 
-    'rm -rf ${p.basename(tmpFilePath)}\n'.split('').forEach(
+    'rm -rf $tmpFilePath\n'.split('').forEach(
       (String element) {
         write(element);
       },

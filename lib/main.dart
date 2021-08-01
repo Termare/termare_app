@@ -10,13 +10,9 @@ import 'package:global_repository/global_repository.dart';
 import 'app/routes/app_pages.dart';
 
 void main() {
-  if (PlatformUtil.isDesktop()) {
-    RuntimeEnvir.initEnvirForDesktop();
-  } else {
-    RuntimeEnvir.initEnvirWithPackageName('com.nightmare.termare');
-  }
+  RuntimeEnvir.initEnvirWithPackageName('com.nightmare.termare');
   runApp(
-    NiToastNew(
+    ToastApp(
       child: GetMaterialApp(
         title: 'Termare开源版',
         initialRoute: AppPages.INITIAL,

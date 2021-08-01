@@ -16,8 +16,6 @@ dependencies:
   global_repository:
     git: https://github.com/nightmare-space/global_repository
   cupertino_icons: ^1.0.2
-  # 网络访问插件
-  dio: ^4.0.0
 
   termare_pty:
     git: https://github.com/termare/termare_pty
@@ -27,13 +25,6 @@ dev_dependencies:
   flutter_test:
     sdk: flutter
 
-dependency_overrides:
-  termare_view:
-    path: /Users/nightmare/Desktop/termare-space/termare_view
-  termare_pty:
-    path: /Users/nightmare/Desktop/termare-space/termare_pty
-  dart_pty:
-    path: /Users/nightmare/Desktop/termare-space/dart_pty
 
 flutter:
   uses-material-design: true
@@ -59,3 +50,13 @@ flutter:
     - assets/icons/
     - assets/lib/
     - assets/text/
+
+dependency_overrides:
+  termare_view:
+    path: /Users/nightmare/Desktop/termare-space/termare_view
+  termare_pty:
+    path: /Users/nightmare/Desktop/termare-space/termare_pty
+  dart_pty:
+    path: /Users/nightmare/Desktop/termare-space/dart_pty
+  global_repository:
+    path: /Users/nightmare/Desktop/nightmare-space/global_repository
