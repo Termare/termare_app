@@ -16,7 +16,7 @@ dependencies:
   global_repository:
     git: https://github.com/nightmare-space/global_repository
   cupertino_icons: ^1.0.2
-
+  dio: ^4.0.0
   termare_pty:
     git: https://github.com/termare/termare_pty
   termare_view:
