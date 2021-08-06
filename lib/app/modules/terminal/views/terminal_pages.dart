@@ -186,8 +186,17 @@ class _TerminalPagesState extends State<TerminalPages>
                   // ),
                   Expanded(
                     child: PageView(
-                      controller: pageController,
-                      children: controller.getPtyTerms(),
+                      children: [
+                        // QuarkWindowCheck(
+                        //   children: controller.getPtyTermsForCheck(),
+                        //   page: pageController.page.toInt(),
+                        // ),
+                        PageView(
+                          controller: pageController,
+                          children: controller.getPtyTerms(),
+                        ),
+                        SettingPage(),
+                      ],
                     ),
                   ),
                 ],

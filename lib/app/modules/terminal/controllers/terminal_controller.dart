@@ -84,8 +84,8 @@ class TerminalController extends GetxController {
       workingDirectory: workingDirectory,
       environment: environment,
       row: controller.row,
-      // 减一有用的，适配 zsh
-      column: controller.column - 1,
+      // 不能减一了
+      column: controller.column,
       arguments: ['-l'],
     );
     Future.delayed(const Duration(milliseconds: 100), () {
