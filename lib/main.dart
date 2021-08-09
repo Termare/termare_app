@@ -14,10 +14,12 @@ void main() {
   runApp(
     ToastApp(
       child: GetMaterialApp(
+        // showPerformanceOverlay: true,
         title: 'Termare开源版',
         initialRoute: AppPages.INITIAL,
         getPages: AppPages.routes,
         defaultTransition: Transition.fade,
+        
       ),
     ),
   );

@@ -57,10 +57,16 @@ class _DownloadFileState extends State<_DownloadFile> {
         // );
       },
     );
-    Process.runSync('chmod', <String>[
-      '0777',
-      savePath,
-    ]);
+    ProcessResult result = Process.runSync(
+      'chmod',
+      <String>[
+        '0777',
+        savePath,
+      ],
+      environment: PlatformUtil.environment(),
+    );
+    Log.e(result.stderr);
+    Log.d(result.stdout);
     await installModule(savePath);
   }
 
@@ -98,21 +104,6 @@ class _DownloadFileState extends State<_DownloadFile> {
     title = '配置中...';
     fileDownratio = null;
     setState(() {});
-    await exec('''
-    cd ${RuntimeEnvir.usrPath}/
-    for line in `cat SYMLINKS.txt`
-    do
-      OLD_IFS="\$IFS"
-      IFS="←"
-      arr=(\$line)
-      IFS="\$OLD_IFS"
-      ln -s \${arr[0]} \${arr[3]}
-    done
-    rm -rf SYMLINKS.txt
-    chmod -R 0700 ${RuntimeEnvir.binPath}/*
-    chmod -R 0700 ${RuntimeEnvir.usrPath}/libexec/* 2>/dev/null
-    chmod -R 0700 ${RuntimeEnvir.usrPath}/lib/apt/methods/* 2>/dev/null
-    ''');
   }
 
   @override

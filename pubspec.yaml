@@ -9,10 +9,12 @@ environment:
   sdk: ">=2.9.0 <3.0.0"
 
 dependencies:
+  vibration: ^1.7.3
   archive: ^3.1.2
   get: ^4.1.4
   flutter:
     sdk: flutter
+  just_audio: ^0.9.5
   global_repository:
     git: https://github.com/nightmare-space/global_repository
   cupertino_icons: ^1.0.2
