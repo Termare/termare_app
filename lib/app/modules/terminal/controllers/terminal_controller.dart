@@ -72,6 +72,7 @@ class TerminalController extends GetxController {
           '''
       function initApp(){
         cd ${RuntimeEnvir.usrPath}/
+        echo 准备符号链接...
         for line in `cat SYMLINKS.txt`
         do
           OLD_IFS="\$IFS"
