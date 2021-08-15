@@ -12,6 +12,7 @@ import 'package:termare_app/app/modules/terminal/utils/extension.dart';
 import 'package:termare_app/app/modules/terminal/views/download_bootstrap_page.dart';
 import 'package:termare_app/app/modules/terminal/views/terminal_pages.dart';
 import 'package:termare_app/app/widgets/termare_view_with_bar.dart';
+import 'package:termare_app/config/assets.dart';
 import 'package:termare_app/config/config.dart';
 import 'package:termare_pty/termare_pty.dart';
 import 'package:termare_view/termare_view.dart';
@@ -27,7 +28,7 @@ class TerminalController extends GetxController {
 
   Future<void> createPtyTerm() async {
     final duration = await player.setAsset(
-      'assets/ogg/InCallNotification.ogg',
+      Assets.ogg,
     );
     bool isFirst = false;
     final SettingInfo settingInfo = settingController.settingInfo;
@@ -55,7 +56,7 @@ class TerminalController extends GetxController {
         final double screenWidth = size.width / window.devicePixelRatio;
         final double screenHeight = size.height / window.devicePixelRatio;
         controller.setWindowSize(Size(screenWidth, screenHeight));
-        PseudoTerminal pseudoTerminal = PseudoTerminal(
+        final PseudoTerminal pseudoTerminal = PseudoTerminal(
           row: controller.row,
           // 减一有用的，适配 zsh
           column: controller.column,

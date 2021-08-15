@@ -16,18 +16,17 @@
           MMMMo  oMMMM
           MMMMo  oMMMM
           oNMm-  -mMNs[0m
-[18A[9999999D[35C[0m[1m[32m[1mu0_a444[0m@[32m[1mlocalhost[0m 
+[18A[9999999D[35C[0m[1m[32m[1mu0_a610[0m@[32m[1mlocalhost[0m 
 [35C[0m-----------------[0m 
 [35C[0m[32m[1mOS[0m[0m:[0m Android 11 aarch64[0m 
 [35C[0m[32m[1mHost[0m[0m:[0m Xiaomi Mi 10[0m 
-[35C[0m[32m[1mKernel[0m[0m:[0m 4.19.113-perf-gc55c61662dfb[0m 
-[35C[0m[32m[1mUptime[0m[0m:[0m 1 day, 19 hours, 7 mins[0m 
-[35C[0m[32m[1mPackages[0m[0m:[0m 81 (dpkg), 1 (pkg)[0m 
+[35C[0m[32m[1mKernel[0m[0m:[0m 4.19.113-perf-g381838f372995[0m 
+[35C[0m[32m[1mUptime[0m[0m:[0m 3 days, 16 hours, 56 mins[0m 
+[35C[0m[32m[1mPackages[0m[0m:[0m 117 (dpkg), 1 (pkg)[0m 
 [35C[0m[32m[1mShell[0m[0m:[0m zsh 5.8[0m 
 [35C[0m[32m[1mResolution[0m[0m:[0m 1080x2340x60x113680cmd[0m 
-[35C[0m[32m[1mTerminal[0m[0m:[0m ghtmare.termare[0m 
 [35C[0m[32m[1mCPU[0m[0m:[0m Qualcomm SM8250 (8) @ 1.804GHz[0m 
-[35C[0m[32m[1mMemory[0m[0m:[0m 4494MiB / 7614MiB[0m 
+[35C[0m[32m[1mMemory[0m[0m:[0m 5310MiB / 7612MiB[0m 
 
 [35C[30m[40m   [31m[41m   [32m[42m   [33m[43m   [34m[44m   [35m[45m   [36m[46m   [37m[47m   [m
 [35C[38;5;8m[48;5;8m   [38;5;9m[48;5;9m   [38;5;10m[48;5;10m   [38;5;11m[48;5;11m   [38;5;12m[48;5;12m   [38;5;13m[48;5;13m   [38;5;14m[48;5;14m   [38;5;15m[48;5;15m   [m

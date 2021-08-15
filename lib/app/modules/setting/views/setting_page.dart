@@ -11,6 +11,7 @@ import 'package:termare_app/app/modules/setting/views/powerlevel10k_addr.dart';
 import 'package:termare_app/app/modules/terminal/controllers/terminal_controller.dart';
 import 'package:termare_app/app/modules/terminal/views/terminal_pages.dart';
 import 'package:termare_app/app/widgets/pop_button.dart';
+import 'package:termare_app/config/assets.dart';
 import 'package:termare_app/config/config.dart';
 import 'package:termare_view/termare_view.dart';
 
@@ -54,26 +55,30 @@ class _SettingPageState extends State<SettingPage> {
 
   Future<void> execFetch() async {
     final String fetch = await rootBundle.loadString(
-      Config.flutterPackage + 'assets/text/neofetch.txt',
+      Assets.neofetchContent,
     );
     _controller.clear();
     _controller.enableAutoScroll();
     writeLock = true;
-    for (final String char in fetch.split('')) {
-      _controller.write(char);
-      // 这儿不是故意这么写，用 mill 不能实现我想要的效果
-      await Future<void>.delayed(const Duration(microseconds: 900));
-      await Future<void>.delayed(const Duration(microseconds: 900));
-      await Future<void>.delayed(const Duration(microseconds: 900));
-      await Future<void>.delayed(const Duration(microseconds: 900));
-      await Future<void>.delayed(const Duration(microseconds: 900));
-      await Future<void>.delayed(const Duration(microseconds: 900));
-      await Future<void>.delayed(const Duration(microseconds: 900));
-      await Future<void>.delayed(const Duration(microseconds: 900));
-      await Future<void>.delayed(const Duration(microseconds: 900));
-      await Future<void>.delayed(const Duration(microseconds: 900));
-      // await Future<void>.delayed(Duration(milliseconds: 1));
+    for (final String line in fetch.split('\n')) {
+      for (final String char in line.split('')) {
+        _controller.write(char);
+        // 这儿不是故意这么写，用 mill 不能实现我想要的效果
+        await Future<void>.delayed(const Duration(microseconds: 900));
+        await Future<void>.delayed(const Duration(microseconds: 900));
+        await Future<void>.delayed(const Duration(microseconds: 900));
+        await Future<void>.delayed(const Duration(microseconds: 900));
+        await Future<void>.delayed(const Duration(microseconds: 900));
+        await Future<void>.delayed(const Duration(microseconds: 900));
+        await Future<void>.delayed(const Duration(microseconds: 900));
+        await Future<void>.delayed(const Duration(microseconds: 900));
+        await Future<void>.delayed(const Duration(microseconds: 900));
+        await Future<void>.delayed(const Duration(microseconds: 900));
+        // await Future<void>.delayed(Duration(milliseconds: 1));
+      }
+      _controller.write('\r\n');
     }
+
     writeLock = false;
   }
 
