@@ -2,8 +2,11 @@ import 'dart:ui';
 
 import 'package:dart_pty/dart_pty.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/physics.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
+import 'package:global_repository/global_repository.dart';
+import 'package:termare_app/app/modules/dashboard/views/dashboard.dart';
 import 'package:termare_app/app/modules/terminal/controllers/terminal_controller.dart';
 import 'package:termare_app/app/modules/terminal/views/terminal_title.dart';
 import 'package:termare_app/app/widgets/custom_icon_button.dart';
@@ -60,150 +63,225 @@ class TerminalPages extends StatefulWidget {
 }
 
 class _TerminalPagesState extends State<TerminalPages>
-    with SingleTickerProviderStateMixin {
-  TerminalController controller;
+    with TickerProviderStateMixin {
+  TerminalController controller = Get.find();
   PageController pageController = PageController();
-  PageController titleController = PageController();
-  String titleName = '终端[0]';
+  AnimationController animationController;
   @override
   void initState() {
     super.initState();
-    controller = Get.find();
     if (controller.terms.isEmpty) {
       controller.createPtyTerm().then((value) {
         setState(() {});
       });
     }
-    pageController.addListener(() {
-      print(pageController.page.round());
-      // if (pageController.page.toString().split('.').last == '0') {
-      if (titleName != '终端[${pageController.page.round()}]') {
-        titleName = '终端[${pageController.page.round()}]';
-        titleController.animateToPage(
-          pageController.page.round(),
-          duration: Duration(
-            milliseconds: 300,
-          ),
-          curve: Curves.ease,
-        );
-        setState(() {});
-      }
-      // print(pageController.page);
-      // }
-    });
   }
+
+  double offset = 0;
+  double maxSize = 10000;
+  double itemDimension = Get.size.width;
+  double _getPixels(double page) {
+    return page * itemDimension;
+  }
+
+  double _getPage(double pixels) {
+    return pixels / itemDimension;
+  }
+
+  double _getTargetPixels(
+    double pixels,
+    Tolerance tolerance,
+    double velocity,
+  ) {
+    double page = _getPage(pixels);
+    Log.e('page -> $page');
+    if (pixels < 0) {
+      // return 0;
+    }
+    if (pixels >= maxSize) {
+      return maxSize;
+    }
+    if (true) {
+      if (velocity < -tolerance.velocity) {
+        page -= 0.5;
+      } else if (velocity > tolerance.velocity) {
+        page += 0.5;
+      }
+      return _getPixels(page.roundToDouble());
+    }
+    return _getPixels(page.roundToDouble());
+  }
+
+  final Tolerance _kDefaultTolerance = Tolerance(
+    // TODO(ianh): Handle the case of the device pixel ratio changing.
+    // TODO(ianh): Get this from the local MediaQuery not dart:ui's window object.
+    velocity: 1.0 /
+        (0.050 *
+            WidgetsBinding
+                .instance.window.devicePixelRatio), // logical pixels per second
+    distance:
+        1.0 / WidgetsBinding.instance.window.devicePixelRatio, // logical pixels
+  );
 
   @override
   Widget build(BuildContext context) {
+    final Map<int, Widget> map = {
+      1: Builder(builder: (context) {
+        double _offset;
+        if (offset >= 0) {
+          if (offset < Get.size.width / 2) {
+            _offset = offset;
+          } else {
+            _offset = Get.size.width - offset;
+          }
+        } else if (offset < 0) {
+          if (offset.abs() < Get.size.width / 2) {
+            _offset = offset;
+          } else {
+            // Log.d('offset $offset');
+            _offset = -Get.size.width - offset;
+          }
+        }
+        return GetBuilder<TerminalController>(builder: (context) {
+          return Transform(
+            transform: Matrix4.identity()..translate(_offset),
+            // ..scale(((Get.width - _offset.abs()) / Get.width) / 2 + 1 / 2),
+            alignment: Alignment.center,
+            child: AnnotatedRegion<SystemUiOverlayStyle>(
+              value: SystemUiOverlayStyle.light,
+              child: Opacity(
+                opacity: 1.0 - 1.0 * _offset.abs() / Get.size.width,
+                child: controller.getCurTerm(),
+              ),
+            ),
+          );
+        });
+      }),
+    };
+    if (offset < 0) {
+      map[0] = Builder(builder: (context) {
+        double _offset;
+        if (offset.abs() < Get.size.width / 2) {
+          _offset = -offset;
+        } else {
+          _offset = offset + Get.size.width;
+        }
+        return Opacity(
+          opacity: 1.0,
+          child: Transform(
+            transform: Matrix4.identity()..translate(_offset),
+            // ..scale(0.8),
+            alignment: Alignment.center,
+            child: SettingPage(),
+          ),
+        );
+      });
+      if (offset.abs() > Get.size.width / 2) {
+        final Widget tmp = map[1];
+        map[1] = map[0];
+        map[0] = tmp;
+      }
+    } else {
+      map[0] = Builder(builder: (context) {
+        double _offset;
+        if (offset < Get.size.width / 2) {
+          _offset = -offset;
+        } else {
+          _offset = offset - Get.size.width;
+        }
+        return Transform(
+          transform: Matrix4.identity()..translate(_offset),
+          // ..scale(((Get.width - _offset.abs()) / Get.width) / 2 + 1 / 2),
+          alignment: Alignment.center,
+          child: Opacity(
+            // opacity: 1.0 - 1.0 * (_offset.abs() / Get.size.width),
+            opacity: 1.0,
+            child: DashBoard(
+              onSelect: () {
+                animationController = AnimationController(
+                  vsync: this,
+                  value: Get.width,
+                  lowerBound: 0,
+                  upperBound: Get.width,
+                  duration: Duration(milliseconds: 300),
+                );
+                animationController.reset();
+                animationController.addListener(() {
+                  offset = animationController.value;
+                  // Log.d(offset);
+                  setState(() {});
+                });
+                animationController.value = Get.width;
+                animationController.reverse();
+              },
+            ),
+          ),
+        );
+      });
+      // Log.d('offset $offset');
+      // Log.d('Get.size.width / 2 ${Get.size.width / 2}');
+      if (offset > Get.size.width / 2) {
+        Widget tmp = map[1];
+        map[1] = map[0];
+        map[0] = tmp;
+      }
+    }
     return AnnotatedRegion<SystemUiOverlayStyle>(
       value: SystemUiOverlayStyle.light,
-      child: Scaffold(
-        backgroundColor: TermareStyles.vsCode.backgroundColor,
-        // backgroundColor: Color(0xfff3efef),
-        body: SafeArea(
-          child: GetBuilder<TerminalController>(
-            init: TerminalController(),
-            builder: (_) {
-              return Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  // Material(
-                  //   color: Color(0xfff3efef),
-                  //   child: SizedBox(
-                  //     height: 36,
-                  //     width: MediaQuery.of(context).size.width,
-                  //     child: Padding(
-                  //       padding: const EdgeInsets.symmetric(horizontal: 8.0),
-                  //       child: Row(
-                  //         crossAxisAlignment: CrossAxisAlignment.center,
-                  //         children: [
-                  //           Text(
-                  //             '$titleName -> ',
-                  //             style: const TextStyle(
-                  //               height: 1.0,
-                  //               fontWeight: FontWeight.bold,
-                  //             ),
-                  //           ),
-                  //           Expanded(
-                  //             child: LayoutBuilder(
-                  //               builder: (_, BoxConstraints constraints) {
-                  //                 // print('$constraints');
-                  //                 return SizedBox(
-                  //                   height: 36,
-                  //                   child: PageView.builder(
-                  //                     physics: NeverScrollableScrollPhysics(),
-                  //                     itemCount: controller.terms.length,
-                  //                     controller: titleController,
-                  //                     itemBuilder: (c, i) {
-                  //                       return TerminalTitle(
-                  //                         controller:
-                  //                             controller.terms[i].controller,
-                  //                       );
-                  //                     },
-                  //                   ),
-                  //                 );
-                  //               },
-                  //             ),
-                  //           ),
-                  //           NiIconButton(
-                  //             child: const Icon(Icons.filter_none),
-                  //             onTap: () async {
-                  //               print(
-                  //                   'pageController.page-> ${pageController.page}');
-                  //               final int index = await Get.to<int>(
-                  //                 QuarkWindowCheck(
-                  //                   children: controller.getPtyTermsForCheck(),
-                  //                   page: pageController.page.toInt(),
-                  //                 ),
-                  //               );
-                  //               if (index != null) {
-                  //                 pageController.jumpToPage(index);
-                  //               }
-                  //             },
-                  //           ),
-                  //           NiIconButton(
-                  //             child: const Icon(Icons.add),
-                  //             onTap: () async {
-                  //               await controller.createPtyTerm();
-                  //               setState(() {});
-                  //               pageController.animateToPage(
-                  //                 controller.terms.length - 1,
-                  //                 duration: const Duration(milliseconds: 300),
-                  //                 curve: Curves.ease,
-                  //               );
-                  //             },
-                  //           ),
-                  //           NiIconButton(
-                  //             child: const Icon(Icons.settings),
-                  //             onTap: () {
-                  //               Get.to(SettingPage());
-                  //             },
-                  //           ),
-                  //         ],
-                  //       ),
-                  //     ),
-                  //   ),
-                  // ),
-                  Expanded(
-                    child: PageView(
-                      children: [
-                        // QuarkWindowCheck(
-                        //   children: controller.getPtyTermsForCheck(),
-                        //   page: pageController.page.toInt(),
-                        // ),
-                        PageView(
-                          controller: pageController,
-                          children: controller.getPtyTerms(),
-                        ),
-                        SettingPage(),
-                      ],
-                    ),
-                  ),
-                ],
-              );
+      child: GetBuilder<TerminalController>(
+        init: TerminalController(),
+        builder: (_) {
+          return GestureDetector(
+            behavior: HitTestBehavior.translucent,
+            onHorizontalDragUpdate: (details) {
+              offset += details.delta.dx;
+              // Log.e(offset);
+              setState(() {});
             },
-          ),
-        ),
+            onHorizontalDragEnd: (details) {
+              double velocity = details.velocity.pixelsPerSecond.dx;
+              double start = offset;
+              double target = _getTargetPixels(
+                start,
+                _kDefaultTolerance,
+                velocity,
+              );
+              final spring = SpringDescription.withDampingRatio(
+                mass: 0.5,
+                stiffness: 100.0,
+                ratio: 1.1,
+              );
+              final ScrollSpringSimulation scrollSpringSimulation =
+                  ScrollSpringSimulation(
+                spring,
+                start,
+                target,
+                velocity,
+                tolerance: _kDefaultTolerance,
+              );
+              animationController = AnimationController(
+                vsync: this,
+                value: 0,
+                lowerBound: double.negativeInfinity,
+                upperBound: double.infinity,
+              );
+              animationController.reset();
+              animationController.addListener(() {
+                offset = animationController.value;
+                // Log.d(offset);
+                setState(() {});
+              });
+              animationController.animateWith(scrollSpringSimulation);
+            },
+            child: Stack(
+              alignment: Alignment.center,
+              children: [
+                map[0],
+                map[1],
+              ],
+            ),
+          );
+        },
       ),
     );
   }

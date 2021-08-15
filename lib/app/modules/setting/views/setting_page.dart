@@ -13,6 +13,7 @@ import 'package:termare_app/app/modules/terminal/views/terminal_pages.dart';
 import 'package:termare_app/app/widgets/pop_button.dart';
 import 'package:termare_app/config/assets.dart';
 import 'package:termare_app/config/config.dart';
+import 'package:termare_app/themes/app_colors.dart';
 import 'package:termare_view/termare_view.dart';
 
 import 'zsh_select_addr.dart';
@@ -30,24 +31,24 @@ class _SettingPageState extends State<SettingPage> {
       fontSize: 8,
     ),
   );
-  TermareController preview;
+  TermareController _preview;
 
   bool writeLock = false;
 
-  SettingController controller = Get.find<SettingController>();
+  SettingController controller = Get.find();
 
   @override
   void initState() {
     super.initState();
-    preview = TermareController(
+    _preview = TermareController(
       theme: TermareStyles.vsCode.copyWith(
         fontSize: controller.settingInfo.fontSize.toDouble(),
       ),
     )
       ..write(
-        '    字体预览 font preview\n' +
-            '    [30m[40m   [31m[41m   [32m[42m   [33m[43m   [34m[44m   [35m[45m   [36m[46m   [37m[47m   [m\n'
-                '    [38;5;8m[48;5;8m   [38;5;9m[48;5;9m   [38;5;10m[48;5;10m   [38;5;11m[48;5;11m   [38;5;12m[48;5;12m   [38;5;13m[48;5;13m   [38;5;14m[48;5;14m   [38;5;15m[48;5;15m   [m',
+        '字体预览 font preview\r\n' +
+            '[30m[40m   [31m[41m   [32m[42m   [33m[43m   [34m[44m   [35m[45m   [36m[46m   [37m[47m   [m\r\n'
+                '[38;5;8m[48;5;8m   [38;5;9m[48;5;9m   [38;5;10m[48;5;10m   [38;5;11m[48;5;11m   [38;5;12m[48;5;12m   [38;5;13m[48;5;13m   [38;5;14m[48;5;14m   [38;5;15m[48;5;15m   [m',
       )
       ..showCursor = false;
     execFetch();
@@ -60,6 +61,10 @@ class _SettingPageState extends State<SettingPage> {
     _controller.clear();
     _controller.enableAutoScroll();
     writeLock = true;
+    await Future.delayed(Duration(milliseconds: 300));
+    if (!mounted) {
+      return;
+    }
     for (final String line in fetch.split('\n')) {
       for (final String char in line.split('')) {
         _controller.write(char);
@@ -93,8 +98,9 @@ class _SettingPageState extends State<SettingPage> {
             color: Colors.black,
           ),
         ),
+        brightness: Brightness.light,
         centerTitle: true,
-        leading: PopButton(),
+        leading: const PopButton(),
         elevation: 0,
       ),
       body: GetBuilder<SettingController>(
@@ -137,7 +143,7 @@ class _SettingPageState extends State<SettingPage> {
                   padding: const EdgeInsets.all(8.0),
                   child: SizedBox(
                     width: MediaQuery.of(context).size.width,
-                    height: preview.theme.characterHeight * 3,
+                    height: _preview.theme.characterHeight * 3,
                     child: GestureDetector(
                       behavior: HitTestBehavior.translucent,
                       onTap: () {},
@@ -145,7 +151,7 @@ class _SettingPageState extends State<SettingPage> {
                         borderRadius: BorderRadius.circular(4),
                         child: IgnorePointer(
                           child: TermareView(
-                            controller: preview,
+                            controller: _preview,
                           ),
                         ),
                       ),
@@ -176,7 +182,7 @@ class _SettingPageState extends State<SettingPage> {
                       );
                     }
                     controller.saveToLocal();
-                    preview.setFontSize(
+                    _preview.setFontSize(
                       controller.settingInfo.fontSize.toDouble(),
                     );
                     setState(() {});
@@ -186,15 +192,44 @@ class _SettingPageState extends State<SettingPage> {
                   title: '更改字体样式',
                   subTitle: controller.settingInfo.fontFamily.toString(),
                   onTap: () {
-                    controller.changeFontFamily(preview);
+                    controller.changeFontFamily(_preview);
                   },
                 ),
                 SettingItem(
                   title: '更改主题',
-                  subTitle: controller.settingInfo.termStyle,
-                  onTap: () {
-                    controller.changeTermStyle(preview);
-                  },
+                  suffix: Column(
+                    children: [
+                      SizedBox(
+                        height: 8.w,
+                      ),
+                      Wrap(
+                        spacing: 8.w,
+                        runSpacing: 4.w,
+                        children: [
+                          TagItem(
+                            value: 'vsCode',
+                            groupValue: controller.settingInfo.termStyle,
+                            onChanged: controller.onTextStyleChange,
+                          ),
+                          TagItem(
+                            value: 'manjaro',
+                            groupValue: controller.settingInfo.termStyle,
+                            onChanged: controller.onTextStyleChange,
+                          ),
+                          TagItem(
+                            value: 'macos',
+                            groupValue: controller.settingInfo.termStyle,
+                            onChanged: controller.onTextStyleChange,
+                          ),
+                          TagItem(
+                            value: 'termux',
+                            groupValue: controller.settingInfo.termStyle,
+                            onChanged: controller.onTextStyleChange,
+                          ),
+                        ],
+                      ),
+                    ],
+                  ),
                 ),
                 const SettingTitle(
                   title: '通用设置',
@@ -440,6 +475,52 @@ class _SettingPageState extends State<SettingPage> {
   }
 }
 
+class TagItem extends StatelessWidget {
+  const TagItem({
+    Key key,
+    this.value,
+    this.groupValue,
+    this.onChanged,
+  }) : super(key: key);
+  final String value;
+  final String groupValue;
+  final void Function(String value) onChanged;
+
+  @override
+  Widget build(BuildContext context) {
+    final bool isSelect = value == groupValue;
+    return GestureDetector(
+      onTap: () {
+        onChanged(value);
+      },
+      child: Container(
+        width: 100,
+        height: 40,
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(12.w),
+          // color: Theme.of(context).primaryColor,
+          border: Border.all(
+            color: isSelect
+                ? Theme.of(context).primaryColor
+                : AppColors.borderColor,
+            width: 2,
+          ),
+        ),
+        child: Center(
+          child: Text(
+            value,
+            style: TextStyle(
+              color: isSelect
+                  ? Theme.of(context).primaryColor
+                  : AppColors.fontColor,
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+}
+
 class SwitchItem extends StatelessWidget {
   const SwitchItem({
     Key key,
@@ -483,12 +564,18 @@ class SwitchItem extends StatelessWidget {
 }
 
 class SettingItem extends StatefulWidget {
-  const SettingItem({Key key, this.title, this.onTap, this.subTitle})
-      : super(key: key);
+  const SettingItem({
+    Key key,
+    this.title,
+    this.onTap,
+    this.subTitle,
+    this.suffix = const SizedBox(),
+  }) : super(key: key);
 
   final String title;
   final String subTitle;
   final void Function() onTap;
+  final Widget suffix;
   @override
   _SettingItemState createState() => _SettingItemState();
 }
@@ -497,15 +584,13 @@ class _SettingItemState extends State<SettingItem> {
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: () {
-        widget.onTap();
-      },
+      onTap: widget.onTap,
       child: Padding(
         padding: EdgeInsets.symmetric(
           horizontal: 12,
         ),
-        child: SizedBox(
-          height: 68,
+        child: ConstrainedBox(
+          constraints: BoxConstraints(minHeight: 64.w),
           child: Align(
             alignment: Alignment.centerLeft,
             child: Column(
@@ -514,24 +599,26 @@ class _SettingItemState extends State<SettingItem> {
               children: [
                 Text(
                   widget.title,
-                  style: Theme.of(context).textTheme.headline6.copyWith(
-                        // color: Theme.of(context).colorScheme.primaryVariant,
-                        fontWeight: FontWeight.w400,
-                      ),
+                  style: TextStyle(
+                    // color: Theme.of(context).colorScheme.primaryVariant,
+                    fontWeight: FontWeight.w400,
+                    fontSize: 18.w,
+                  ),
                 ),
                 Builder(builder: (_) {
-                  String content = '空';
-                  if (widget.subTitle != null && widget.subTitle.isNotEmpty) {
-                    content = widget.subTitle;
+                  String content = widget.subTitle;
+                  if (content == null) {
+                    return SizedBox();
                   }
                   return Text(
                     content,
-                    style: Theme.of(context).textTheme.subtitle1.copyWith(
-                          color: Colors.black54,
-                          fontWeight: FontWeight.w400,
-                        ),
+                    style: TextStyle(
+                      color: Colors.black54,
+                      fontWeight: FontWeight.w400,
+                    ),
                   );
-                })
+                }),
+                widget.suffix,
               ],
             ),
           ),
@@ -554,15 +641,16 @@ class _SettingTitleState extends State<SettingTitle> {
   Widget build(BuildContext context) {
     return Padding(
       padding: EdgeInsets.symmetric(
-        vertical: 16,
+        vertical: 8,
         horizontal: 10,
       ),
       child: Text(
         widget.title,
-        style: Theme.of(context).textTheme.headline6.copyWith(
-              color: Theme.of(context).colorScheme.primaryVariant,
-              fontWeight: FontWeight.w400,
-            ),
+        style: TextStyle(
+          fontSize: 18.w,
+          color: Theme.of(context).colorScheme.primaryVariant,
+          fontWeight: FontWeight.w400,
+        ),
       ),
     );
   }

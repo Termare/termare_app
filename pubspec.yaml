@@ -14,7 +14,7 @@ dependencies:
   get: ^4.1.4
   flutter:
     sdk: flutter
-  just_audio: ^0.9.5
+  # just_audio: ^0.9.5
   global_repository:
     git: https://github.com/nightmare-space/global_repository
   cupertino_icons: ^1.0.2

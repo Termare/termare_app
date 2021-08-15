@@ -7,9 +7,11 @@ class QuarkWindowCheck extends StatefulWidget {
     Key key,
     @required this.children,
     this.page,
+    this.onSelect,
   }) : super(key: key);
   final List<Widget> children;
   final int page;
+  final void Function(int value) onSelect;
   @override
   _QuarkWindowCheckState createState() => _QuarkWindowCheckState();
 }
@@ -94,7 +96,7 @@ class _QuarkWindowCheckState extends State<QuarkWindowCheck>
                 shadowColor: Colors.black,
                 borderRadius: 16,
                 onTap: () {
-                  Navigator.of(context).pop(i);
+                  widget.onSelect(i);
                 },
                 child: Material(
                   color: Colors.white,

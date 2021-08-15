@@ -19,7 +19,9 @@ class _TermBottomBarState extends State<TermBottomBar> {
   }
 
   void updateState() {
-    setState(() {});
+    if (mounted) {
+      setState(() {});
+    }
   }
 
   @override

@@ -309,66 +309,12 @@ class SettingController extends GetxController {
     showToast('更改成功');
   }
 
-  Future<void> changeTermStyle(TermareController controller) async {
-    await showCustomDialog(
-      context: Get.context,
-      child: FullHeightListView(
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            Text('更改终端主题'),
-            SizedBox(
-              height: 8,
-            ),
-            Wrap(
-              children: [
-                TextButton(
-                  onPressed: () {
-                    Get.back();
-                    settingInfo.termStyle = 'vsCode';
-                  },
-                  child: Text('vs code'),
-                ),
-                TextButton(
-                  onPressed: () {
-                    settingInfo.termStyle = 'manjaro';
-                    Get.back();
-                  },
-                  child: Text('manjaro'),
-                ),
-                TextButton(
-                  onPressed: () {
-                    settingInfo.termStyle = 'macos';
-                    saveToLocal();
-                    showToast('macos');
-                    Get.back();
-                  },
-                  child: Text('macos'),
-                ),
-                TextButton(
-                  onPressed: () {
-                    settingInfo.termStyle = 'termux';
-                    saveToLocal();
-                    showToast('更改成功');
-                    Get.back();
-                  },
-                  child: Text('termux'),
-                ),
-              ],
-            ),
-          ],
-        ),
-      ),
-    );
+  void onTextStyleChange(String value) {
+    settingInfo.termStyle = value;
     saveToLocal();
     update();
-    controller.changeStyle(
-      TermareStyle.parse(settingInfo.termStyle).copyWith(
-        fontSize: settingInfo.fontSize.toDouble(),
-      ),
-    );
-    final TerminalController terminalController =
-        Get.find<TerminalController>();
+
+    final TerminalController terminalController = Get.find();
     for (final PtyTermEntity entity in terminalController.terms) {
       entity.controller.changeStyle(
         TermareStyle.parse(settingInfo.termStyle).copyWith(

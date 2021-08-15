@@ -28,11 +28,7 @@ class _TermareViewWithBottomBarState extends State<TermareViewWithBottomBar> {
       value: systemUiOverlayStyle,
       child: Scaffold(
         resizeToAvoidBottomInset: true,
-        backgroundColor: Colors.transparent,
-        // backgroundColor: widget.controller.theme.backgroundColor,
-        // endDrawer: TerminalDrawer(
-        //   controller: widget.controller,
-        // ),
+        backgroundColor: widget.controller.theme.backgroundColor,
         body: SafeArea(
           child: Stack(
             children: [

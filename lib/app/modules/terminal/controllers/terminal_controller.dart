@@ -5,7 +5,7 @@ import 'package:dart_pty/dart_pty.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:global_repository/global_repository.dart';
-import 'package:just_audio/just_audio.dart';
+// import 'package:just_audio/just_audio.dart';
 import 'package:termare_app/app/modules/setting/controllers/setting_controller.dart';
 import 'package:termare_app/app/modules/setting/models_model.dart';
 import 'package:termare_app/app/modules/terminal/utils/extension.dart';
@@ -20,16 +20,16 @@ import 'package:vibration/vibration.dart';
 
 class TerminalController extends GetxController {
   List<PtyTermEntity> terms = [];
-
-  final player = AudioPlayer();
+  int currentTerminal = 0;
+  // final player = AudioPlayer();
   SettingController settingController = Get.find<SettingController>();
 
   String lockFile = RuntimeEnvir.dataPath + '/cache/init_lock';
 
   Future<void> createPtyTerm() async {
-    final duration = await player.setAsset(
-      Assets.ogg,
-    );
+    // final duration = await player.setAsset(
+    //   Assets.ogg,
+    // );
     bool isFirst = false;
     final SettingInfo settingInfo = settingController.settingInfo;
     final TermareController controller = TermareController(
@@ -164,7 +164,7 @@ class TerminalController extends GetxController {
     if (settingInfo.vibrationWhenEscapeA) {
       controller.onBell = () async {
         Feedback.forLongPress(Get.context);
-        player.play();
+        // player.play();
       };
     }
 
@@ -197,6 +197,29 @@ class TerminalController extends GetxController {
       ));
     }
     return widgets;
+  }
+
+  void switchTo(int value) {
+    currentTerminal = value;
+    update();
+  }
+
+  Widget getCurTerm() {
+    if (terms.isEmpty) {
+      return const SizedBox();
+    }
+    final PtyTermEntity entity = terms[currentTerminal];
+    return Hero(
+      tag: '$currentTerminal',
+      child: TermareViewWithBottomBar(
+        controller: entity.controller,
+        termview: TermarePty(
+          key: Key('$currentTerminal'),
+          controller: entity.controller,
+          pseudoTerminal: entity.pseudoTerminal,
+        ),
+      ),
+    );
   }
 
   List<Widget> getPtyTerms() {
