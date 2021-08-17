@@ -6,8 +6,11 @@ import 'package:termare_view/termare_view.dart';
 import 'term_bottom_bar.dart';
 
 class TermareViewWithBottomBar extends StatefulWidget {
-  const TermareViewWithBottomBar({Key key, this.termview, this.controller})
-      : super(key: key);
+  const TermareViewWithBottomBar({
+    Key key,
+    this.termview,
+    this.controller,
+  }) : super(key: key);
   final Widget termview;
   final TermareController controller;
   @override

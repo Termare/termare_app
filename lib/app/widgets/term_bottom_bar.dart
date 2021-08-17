@@ -14,7 +14,6 @@ class _TermBottomBarState extends State<TermBottomBar> {
   @override
   void initState() {
     super.initState();
-
     widget.controller.addListener(updateState);
   }
 
@@ -139,7 +138,9 @@ class _BottomItemState extends State<BottomItem> {
 
   void updateBackground() {
     backgroundColor = widget.controller.theme.backgroundColor;
-    setState(() {});
+    if (mounted) {
+      setState(() {});
+    }
   }
 
   @override

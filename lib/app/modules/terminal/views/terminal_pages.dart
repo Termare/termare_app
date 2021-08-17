@@ -233,6 +233,9 @@ class _TerminalPagesState extends State<TerminalPages>
         builder: (_) {
           return GestureDetector(
             behavior: HitTestBehavior.translucent,
+            onHorizontalDragStart: (details) {
+              animationController?.stop();
+            },
             onHorizontalDragUpdate: (details) {
               offset += details.delta.dx;
               // Log.e(offset);
