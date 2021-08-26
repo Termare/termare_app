@@ -79,13 +79,12 @@ class _TerminalPagesState extends State<TerminalPages>
 
   double offset = 0;
   double maxSize = 10000;
-  double itemDimension = Get.size.width;
   double _getPixels(double page) {
-    return page * itemDimension;
+    return page * Get.size.width;
   }
 
   double _getPage(double pixels) {
-    return pixels / itemDimension;
+    return pixels / Get.size.width;
   }
 
   double _getTargetPixels(

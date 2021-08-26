@@ -40,7 +40,7 @@ class _TermareViewWithBottomBarState extends State<TermareViewWithBottomBar> {
                   Expanded(
                     child: widget.termview,
                   ),
-                  TermBottomBar(
+                  TerminalFoot(
                     controller: widget.controller,
                   ),
                 ],
