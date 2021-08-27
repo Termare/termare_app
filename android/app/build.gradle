@@ -42,27 +42,18 @@ android {
     }
 
     defaultConfig {
-        // TODO: Specify your own unique Application ID (https://developer.android.com/studio/build/application-id.html).
         applicationId "com.nightmare.termare"
         minSdkVersion 16
         targetSdkVersion 28
         versionCode flutterVersionCode.toInteger()
         versionName flutterVersionName
     }
-    signingConfigs {
-        release {
-            storeFile file("./keystore.jks")
-            storePassword 'mys906262255'
-            keyAlias 'key'
-            keyPassword 'mys906262255'
-        }
-    }
     buildTypes {
         release {
-            signingConfig signingConfigs.release
+            signingConfig signingConfigs.debug
         }
         debug {
-            signingConfig signingConfigs.release
+            signingConfig signingConfigs.debug
         }
     }
 }
