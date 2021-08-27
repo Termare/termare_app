@@ -94,6 +94,7 @@ class TerminalController extends GetxController {
         apt update
         echo -e "\x1b[0;32m一切处理结束\x1b[0m"
         rm -rf $lockFile
+        bash
       }
       ''',
           tmpFilePath: RuntimeEnvir.filesPath + '/define',
