@@ -23,6 +23,10 @@ dependencies:
     git: https://github.com/termare/termare_pty
   termare_view:
     git: https://github.com/termare/termare_view
+  webview_flutter: ^2.0.12
+  flutter_webview_plugin: ^0.4.0
+  pseudo_terminal_utils:
+    path: /Users/nightmare/Desktop/nightmare-space/pseudo_terminal_utils
 dev_dependencies:
   flutter_test:
     sdk: flutter

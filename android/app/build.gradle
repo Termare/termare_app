@@ -43,17 +43,25 @@ android {
 
     defaultConfig {
         applicationId "com.nightmare.termare"
-        minSdkVersion 16
+        minSdkVersion 19
         targetSdkVersion 28
         versionCode flutterVersionCode.toInteger()
         versionName flutterVersionName
     }
+    signingConfigs {
+        release {
+            storeFile file("./keystore.jks")
+            storePassword 'mys906262255'
+            keyAlias 'key'
+            keyPassword 'mys906262255'
+        }
+    }
     buildTypes {
         release {
-            signingConfig signingConfigs.debug
+            signingConfig signingConfigs.release
         }
         debug {
-            signingConfig signingConfigs.debug
+            signingConfig signingConfigs.release
         }
     }
 }

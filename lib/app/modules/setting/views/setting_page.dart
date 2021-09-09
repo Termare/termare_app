@@ -1,8 +1,10 @@
+import 'dart:async';
 import 'dart:io';
 
 import 'package:dart_pty/dart_pty.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_webview_plugin/flutter_webview_plugin.dart';
 import 'package:get/get.dart';
 import 'package:global_repository/global_repository.dart';
 import 'package:termare_app/app/modules/setting/controllers/setting_controller.dart';
@@ -10,6 +12,7 @@ import 'package:termare_app/app/modules/setting/utils/term_utils.dart';
 import 'package:termare_app/app/modules/setting/views/powerlevel10k_addr.dart';
 import 'package:termare_app/app/modules/terminal/controllers/terminal_controller.dart';
 import 'package:termare_app/app/modules/terminal/views/terminal_pages.dart';
+import 'package:termare_app/app/modules/terminal/views/web_view.dart';
 import 'package:termare_app/app/widgets/pop_button.dart';
 import 'package:termare_app/config/assets.dart';
 import 'package:termare_app/config/config.dart';
@@ -427,6 +430,45 @@ class _SettingPageState extends State<SettingPage> {
                     );
                     await zsh.writeAsString(zshRaw);
                     // Get.to(page)
+                  },
+                ),
+
+                SettingItem(
+                  title: '打开 Vs Code',
+                  subTitle: '自动键入相关命令，处理配置文件',
+                  onTap: () async {
+                    // Get.to(WebViewExample());
+                    final PseudoTerminal pseudoTerminal = PseudoTerminal(
+                      executable: Platform.isWindows ? 'wsl' : 'bash',
+                      workingDirectory: RuntimeEnvir.homePath,
+                      environment: {
+                        'TERM': 'screen-256color',
+                        'PATH': '${RuntimeEnvir.binPath}:' +
+                            Platform.environment['PATH'],
+                        'HOME': RuntimeEnvir.homePath,
+                      },
+                      useIsolate: false,
+                      arguments: ['-l'],
+                    );
+                    pseudoTerminal.startPolling();
+                    final Completer completer = Completer();
+                    pseudoTerminal.out.listen((event) {
+                      if (event.contains('http://127.0.0.1:8080')) {
+                        completer.complete();
+                      }
+                      Log.w('event -> $event');
+                    });
+                    pseudoTerminal.write(
+                      '${RuntimeEnvir.homePath}/code-server/bin/code-server\n',
+                    );
+                    await completer.future;
+                    SystemChrome.setEnabledSystemUIMode(
+                      SystemUiMode.manual,
+                      overlays: [],
+                    );
+                    Get.to(WebviewScaffold(
+                      url: 'http://127.0.0.1:8080',
+                    ));
                   },
                 ),
                 SettingItem(

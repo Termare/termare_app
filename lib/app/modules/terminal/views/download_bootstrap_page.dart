@@ -14,8 +14,8 @@ class DownloadBootPage extends StatefulWidget {
 class _DownloadBootPageState extends State<DownloadBootPage> {
   @override
   Widget build(BuildContext context) {
-    return FullHeightListView(
-      child: _DownloadFile(),
+    return Material(
+      child: Center(child: _DownloadFile()),
     );
   }
 }
@@ -34,7 +34,7 @@ class _DownloadFileState extends State<_DownloadFile> {
   List<String> androidAdbFiles = [
     'https://nightmare-my.oss-cn-beijing.aliyuncs.com/Termare/bootstrap-aarch64.zip',
   ];
-
+  String cur;
   double fileDownratio = 0.0;
   String title = '';
   Future<void> downloadFile(String urlPath) async {
@@ -57,7 +57,7 @@ class _DownloadFileState extends State<_DownloadFile> {
         // );
       },
     );
-    ProcessResult result = Process.runSync(
+    final ProcessResult result = Process.runSync(
       'chmod',
       <String>[
         '0777',
@@ -83,15 +83,15 @@ class _DownloadFileState extends State<_DownloadFile> {
     // print('total -> $total count -> $count');
     for (final file in archive) {
       final filename = file.name;
-      // print(filename);
+      final String path = '${RuntimeEnvir.usrPath}/$filename';
+      cur = path;
+      print(path);
       if (file.isFile) {
         final data = file.content as List<int>;
-        await File('${RuntimeEnvir.usrPath}/' + filename).create(
-          recursive: true,
-        );
-        await File('${RuntimeEnvir.usrPath}/' + filename).writeAsBytes(data);
+        await File(path).create(recursive: true);
+        await File(path).writeAsBytes(data);
       } else {
-        Directory('${RuntimeEnvir.usrPath}/' + filename).create(
+        Directory(path).create(
           recursive: true,
         );
       }
@@ -114,7 +114,6 @@ class _DownloadFileState extends State<_DownloadFile> {
 
   Future<void> execDownload() async {
     List<String> needDownloadFile;
-
     if (Platform.isAndroid) {
       needDownloadFile = androidAdbFiles;
     }
@@ -132,6 +131,7 @@ class _DownloadFileState extends State<_DownloadFile> {
       child: Padding(
         padding: const EdgeInsets.all(8.0),
         child: Column(
+          mainAxisSize: MainAxisSize.min,
           children: [
             Text(
               title,
@@ -158,15 +158,17 @@ class _DownloadFileState extends State<_DownloadFile> {
                 value: fileDownratio,
               ),
             ),
-            SizedBox(
-              child: Text(
-                '下载到的目录为 $filesPath',
-                style: const TextStyle(
-                  fontWeight: FontWeight.w500,
-                  fontSize: 12,
+            SizedBox(height: 4),
+            if (cur != null)
+              SizedBox(
+                child: Text(
+                  '当前处理文件 $cur',
+                  style: const TextStyle(
+                    fontWeight: FontWeight.w500,
+                    fontSize: 12,
+                  ),
                 ),
               ),
-            ),
           ],
         ),
       ),

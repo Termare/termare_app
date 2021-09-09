@@ -54,6 +54,7 @@ class _TerminalFootState extends State<TerminalFoot>
       width: 414.w,
       height: height.value,
       child: SingleChildScrollView(
+        physics: const NeverScrollableScrollPhysics(),
         child: Column(
           children: [
             GestureDetector(
