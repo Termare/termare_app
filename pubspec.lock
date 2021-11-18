@@ -7,14 +7,14 @@ packages:
       name: archive
       url: "https://pub.flutter-io.cn"
     source: hosted
-    version: "3.1.2"
+    version: "3.1.6"
   async:
     dependency: transitive
     description:
       name: async
       url: "https://pub.flutter-io.cn"
     source: hosted
-    version: "2.8.2"
+    version: "2.8.1"
   boolean_selector:
     dependency: transitive
     description:
@@ -77,7 +77,7 @@ packages:
       name: dio
       url: "https://pub.flutter-io.cn"
     source: hosted
-    version: "4.0.0"
+    version: "4.0.1"
   event_bus:
     dependency: transitive
     description:
@@ -99,13 +99,6 @@ packages:
       url: "https://pub.flutter-io.cn"
     source: hosted
     version: "1.1.2"
-  file:
-    dependency: transitive
-    description:
-      name: file
-      url: "https://pub.flutter-io.cn"
-    source: hosted
-    version: "6.1.2"
   flutter:
     dependency: "direct main"
     description: flutter
@@ -162,7 +155,7 @@ packages:
       name: matcher
       url: "https://pub.flutter-io.cn"
     source: hosted
-    version: "0.12.11"
+    version: "0.12.10"
   meta:
     dependency: transitive
     description:
@@ -177,41 +170,6 @@ packages:
       url: "https://pub.flutter-io.cn"
     source: hosted
     version: "1.8.0"
-  path_provider:
-    dependency: transitive
-    description:
-      name: path_provider
-      url: "https://pub.flutter-io.cn"
-    source: hosted
-    version: "2.0.3"
-  path_provider_linux:
-    dependency: transitive
-    description:
-      name: path_provider_linux
-      url: "https://pub.flutter-io.cn"
-    source: hosted
-    version: "2.0.2"
-  path_provider_macos:
-    dependency: transitive
-    description:
-      name: path_provider_macos
-      url: "https://pub.flutter-io.cn"
-    source: hosted
-    version: "2.0.2"
-  path_provider_platform_interface:
-    dependency: transitive
-    description:
-      name: path_provider_platform_interface
-      url: "https://pub.flutter-io.cn"
-    source: hosted
-    version: "2.0.1"
-  path_provider_windows:
-    dependency: transitive
-    description:
-      name: path_provider_windows
-      url: "https://pub.flutter-io.cn"
-    source: hosted
-    version: "2.0.3"
   permission_handler:
     dependency: transitive
     description:
@@ -225,34 +183,22 @@ packages:
       name: permission_handler_platform_interface
       url: "https://pub.flutter-io.cn"
     source: hosted
-    version: "3.6.1"
-  platform:
-    dependency: transitive
-    description:
-      name: platform
-      url: "https://pub.flutter-io.cn"
-    source: hosted
-    version: "3.0.2"
+    version: "3.7.0"
   plugin_platform_interface:
     dependency: transitive
     description:
       name: plugin_platform_interface
       url: "https://pub.flutter-io.cn"
     source: hosted
-    version: "2.0.1"
-  process:
-    dependency: transitive
-    description:
-      name: process
-      url: "https://pub.flutter-io.cn"
-    source: hosted
-    version: "4.2.3"
+    version: "2.0.2"
   pseudo_terminal_utils:
     dependency: "direct main"
     description:
-      path: "/Users/nightmare/Desktop/nightmare-space/pseudo_terminal_utils"
-      relative: false
-    source: path
+      path: "."
+      ref: HEAD
+      resolved-ref: "49b7179b258106de12fd4bbeee746812c782670d"
+      url: "https://github.com/Termare/pseudo_terminal_utils"
+    source: git
     version: "0.0.1"
   quiver:
     dependency: transitive
@@ -260,16 +206,16 @@ packages:
       name: quiver
       url: "https://pub.flutter-io.cn"
     source: hosted
-    version: "3.0.1"
+    version: "3.0.1+1"
   signale:
     dependency: transitive
     description:
       path: "."
       ref: HEAD
-      resolved-ref: c08220ab2fff96addd575e1c0744984bda17a5ce
+      resolved-ref: c64399b18aa1427c9366bec41662f9d240cc9eda
       url: "https://github.com/Nightmare-MY/signale"
     source: git
-    version: "0.0.5"
+    version: "0.0.6"
   sky_engine:
     dependency: transitive
     description: flutter
@@ -303,6 +249,13 @@ packages:
       url: "https://pub.flutter-io.cn"
     source: hosted
     version: "1.1.0"
+  synchronized:
+    dependency: transitive
+    description:
+      name: synchronized
+      url: "https://pub.flutter-io.cn"
+    source: hosted
+    version: "3.0.0"
   term_glyph:
     dependency: transitive
     description:
@@ -330,7 +283,7 @@ packages:
       name: test_api
       url: "https://pub.flutter-io.cn"
     source: hosted
-    version: "0.4.3"
+    version: "0.4.2"
   typed_data:
     dependency: transitive
     description:
@@ -365,21 +318,35 @@ packages:
       name: webview_flutter
       url: "https://pub.flutter-io.cn"
     source: hosted
-    version: "2.0.12"
+    version: "2.1.2"
+  webview_flutter_android:
+    dependency: transitive
+    description:
+      name: webview_flutter_android
+      url: "https://pub.flutter-io.cn"
+    source: hosted
+    version: "2.2.0"
+  webview_flutter_platform_interface:
+    dependency: transitive
+    description:
+      name: webview_flutter_platform_interface
+      url: "https://pub.flutter-io.cn"
+    source: hosted
+    version: "1.2.0"
+  webview_flutter_wkwebview:
+    dependency: transitive
+    description:
+      name: webview_flutter_wkwebview
+      url: "https://pub.flutter-io.cn"
+    source: hosted
+    version: "2.2.0"
   win32:
     dependency: transitive
     description:
       name: win32
       url: "https://pub.flutter-io.cn"
     source: hosted
-    version: "2.2.8"
-  xdg_directories:
-    dependency: transitive
-    description:
-      name: xdg_directories
-      url: "https://pub.flutter-io.cn"
-    source: hosted
-    version: "0.2.0"
+    version: "2.2.10"
 sdks:
-  dart: ">=2.13.0 <3.0.0"
-  flutter: ">=2.0.0"
+  dart: ">=2.14.0 <3.0.0"
+  flutter: ">=2.5.0"

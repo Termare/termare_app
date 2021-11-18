@@ -81,9 +81,10 @@ class TerminalController extends GetxController {
     final double screenHeight = size.height / window.devicePixelRatio;
     controller.setWindowSize(Size(screenWidth, screenHeight));
     final PseudoTerminal pseudoTerminal = TerminalUtil.getShellTerminal(
-      exec: settingInfo.cmdLine,
+      exec: settingController.settingInfo.cmdLine,
       row: controller.row,
       column: controller.column,
+      arguments: [],
     );
     Future.delayed(const Duration(milliseconds: 100), () {
       if (settingInfo.initCmd.isNotEmpty) {
