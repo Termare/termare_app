@@ -65,11 +65,13 @@ packages:
     source: hosted
     version: "1.0.3"
   dart_pty:
-    dependency: "direct overridden"
+    dependency: transitive
     description:
-      path: "/Users/nightmare/Desktop/termare-space/dart_pty"
-      relative: false
-    source: path
+      path: "."
+      ref: HEAD
+      resolved-ref: "780ac18a3da379a6166787739e73fa4d86c39b22"
+      url: "https://github.com/Termare/dart_pty"
+    source: git
     version: "0.0.3"
   dio:
     dependency: "direct main"
@@ -131,9 +133,11 @@ packages:
   global_repository:
     dependency: "direct main"
     description:
-      path: "/Users/nightmare/Desktop/nightmare-space/global_repository"
-      relative: false
-    source: path
+      path: "."
+      ref: HEAD
+      resolved-ref: "0995fb696724da3d8fc22b1009f5b313b8fbb3e3"
+      url: "https://github.com/nightmare-space/global_repository"
+    source: git
     version: "0.0.1"
   http_parser:
     dependency: transitive
@@ -212,8 +216,8 @@ packages:
     description:
       path: "."
       ref: HEAD
-      resolved-ref: c64399b18aa1427c9366bec41662f9d240cc9eda
-      url: "https://github.com/Nightmare-MY/signale"
+      resolved-ref: "99e278923e468ca882dd13208255fd0944ad5da3"
+      url: "https://github.com/nightmare-space/signale"
     source: git
     version: "0.0.6"
   sky_engine:
@@ -266,16 +270,20 @@ packages:
   termare_pty:
     dependency: "direct main"
     description:
-      path: "/Users/nightmare/Desktop/termare-space/termare_pty"
-      relative: false
-    source: path
+      path: "."
+      ref: HEAD
+      resolved-ref: "1b2bd4310315b9455bc9a552896adf1e230a5a71"
+      url: "https://github.com/Termare/termare_pty"
+    source: git
     version: "1.0.0+1"
   termare_view:
     dependency: "direct main"
     description:
-      path: "/Users/nightmare/Desktop/termare-space/termare_view"
-      relative: false
-    source: path
+      path: "."
+      ref: HEAD
+      resolved-ref: "9f1ae32686054bb589c60776a747ebdec95ca41b"
+      url: "https://github.com/Termare/termare_view"
+    source: git
     version: "0.0.7"
   test_api:
     dependency: transitive
