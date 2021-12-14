@@ -81,10 +81,10 @@ class TerminalController extends GetxController {
     final double screenHeight = size.height / window.devicePixelRatio;
     controller.setWindowSize(Size(screenWidth, screenHeight));
     final PseudoTerminal pseudoTerminal = TerminalUtil.getShellTerminal(
-      exec: settingController.settingInfo.cmdLine,
+      exec: GetPlatform.isMacOS ? 'zsh' : settingController.settingInfo.cmdLine,
       row: controller.row,
       column: controller.column,
-      arguments: [],
+      arguments: ['-l'],
     );
     Future.delayed(const Duration(milliseconds: 100), () {
       if (settingInfo.initCmd.isNotEmpty) {
