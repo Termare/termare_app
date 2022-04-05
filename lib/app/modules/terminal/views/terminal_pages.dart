@@ -1,29 +1,27 @@
-import 'dart:ui';
 
-import 'package:dart_pty/dart_pty.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/physics.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:global_repository/global_repository.dart';
+import 'package:pty/pty.dart';
 import 'package:termare_app/app/modules/dashboard/views/dashboard.dart';
 import 'package:termare_app/app/modules/terminal/controllers/terminal_controller.dart';
-import 'package:termare_app/app/modules/terminal/views/terminal_title.dart';
-import 'package:termare_app/app/widgets/custom_icon_button.dart';
 import 'package:termare_app/config/config.dart';
-import 'package:termare_pty/termare_pty.dart';
 import 'package:termare_view/termare_view.dart';
+import 'package:xterm/next.dart';
 
 import '../../setting/views/setting_page.dart';
-import 'quark_window_check.dart';
 
 class PtyTermEntity {
   PtyTermEntity(
     this.controller,
     this.pseudoTerminal,
+    this.terminal,
   );
   final TermareController controller;
   final PseudoTerminal pseudoTerminal;
+  final Terminal terminal;
   @override
   bool operator ==(dynamic other) {
     // 判断是否是非
@@ -37,7 +35,7 @@ class PtyTermEntity {
   }
 
   @override
-  int get hashCode => pseudoTerminal.pseudoTerminalId.hashCode;
+  int get hashCode => pseudoTerminal.hashCode;
 }
 
 class TerminalPages extends StatefulWidget {

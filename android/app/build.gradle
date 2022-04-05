@@ -24,9 +24,14 @@ if (flutterVersionName == null) {
 apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 apply from: "$flutterRoot/packages/flutter_tools/gradle/flutter.gradle"
-
+// 本地编译注释以下代码
+// start
+def keystorePropertiesFile = rootProject.file("key.properties")
+def keystoreProperties = new Properties()
+keystoreProperties.load(new FileInputStream(keystorePropertiesFile))
+// end
 android {
-    compileSdkVersion 29
+    compileSdkVersion 31
 
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
@@ -49,12 +54,15 @@ android {
         versionName flutterVersionName
     }
     signingConfigs {
+        // 本地编译注释以下代码
+        // start
         release {
-            storeFile file("./keystore.jks")
-            storePassword 'mys906262255'
-            keyAlias 'key'
-            keyPassword 'mys906262255'
+            keyAlias keystoreProperties['keyAlias']
+            keyPassword keystoreProperties['keyPassword']
+            storeFile file(keystoreProperties['storeFile'])
+            storePassword keystoreProperties['storePassword']
         }
+        // end
     }
     buildTypes {
         release {

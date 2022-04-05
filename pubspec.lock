@@ -14,7 +14,7 @@ packages:
       name: async
       url: "https://pub.flutter-io.cn"
     source: hosted
-    version: "2.8.1"
+    version: "2.8.2"
   boolean_selector:
     dependency: transitive
     description:
@@ -28,7 +28,7 @@ packages:
       name: characters
       url: "https://pub.flutter-io.cn"
     source: hosted
-    version: "1.1.0"
+    version: "1.2.0"
   charcode:
     dependency: transitive
     description:
@@ -50,6 +50,13 @@ packages:
       url: "https://pub.flutter-io.cn"
     source: hosted
     version: "1.15.0"
+  convert:
+    dependency: transitive
+    description:
+      name: convert
+      url: "https://pub.flutter-io.cn"
+    source: hosted
+    version: "3.0.1"
   crypto:
     dependency: transitive
     description:
@@ -63,7 +70,7 @@ packages:
       name: cupertino_icons
       url: "https://pub.flutter-io.cn"
     source: hosted
-    version: "1.0.3"
+    version: "1.0.4"
   dart_pty:
     dependency: transitive
     description:
@@ -79,7 +86,14 @@ packages:
       name: dio
       url: "https://pub.flutter-io.cn"
     source: hosted
-    version: "4.0.1"
+    version: "4.0.4"
+  equatable:
+    dependency: transitive
+    description:
+      name: equatable
+      url: "https://pub.flutter-io.cn"
+    source: hosted
+    version: "2.0.3"
   event_bus:
     dependency: transitive
     description:
@@ -129,13 +143,13 @@ packages:
       name: get
       url: "https://pub.flutter-io.cn"
     source: hosted
-    version: "4.3.8"
+    version: "4.6.1"
   global_repository:
     dependency: "direct main"
     description:
       path: "."
       ref: HEAD
-      resolved-ref: "0995fb696724da3d8fc22b1009f5b313b8fbb3e3"
+      resolved-ref: "8ae0e1b004241124cad124a1a343fa07a4acf279"
       url: "https://github.com/nightmare-space/global_repository"
     source: git
     version: "0.0.1"
@@ -159,7 +173,14 @@ packages:
       name: matcher
       url: "https://pub.flutter-io.cn"
     source: hosted
-    version: "0.12.10"
+    version: "0.12.11"
+  material_color_utilities:
+    dependency: transitive
+    description:
+      name: material_color_utilities
+      url: "https://pub.flutter-io.cn"
+    source: hosted
+    version: "0.1.3"
   meta:
     dependency: transitive
     description:
@@ -188,6 +209,13 @@ packages:
       url: "https://pub.flutter-io.cn"
     source: hosted
     version: "3.7.0"
+  platform_info:
+    dependency: transitive
+    description:
+      name: platform_info
+      url: "https://pub.flutter-io.cn"
+    source: hosted
+    version: "3.1.0"
   plugin_platform_interface:
     dependency: transitive
     description:
@@ -200,10 +228,19 @@ packages:
     description:
       path: "."
       ref: HEAD
-      resolved-ref: "49b7179b258106de12fd4bbeee746812c782670d"
+      resolved-ref: "55877213cc41e71b065a4aba5e6b33c847e6bd59"
       url: "https://github.com/Termare/pseudo_terminal_utils"
     source: git
     version: "0.0.1"
+  pty:
+    dependency: "direct main"
+    description:
+      path: "."
+      ref: HEAD
+      resolved-ref: "5c3798fef3f304316a8c8b8b66d611c944213dac"
+      url: "https://github.com/TerminalStudio/pty"
+    source: git
+    version: "0.2.2-pre"
   quiver:
     dependency: transitive
     description:
@@ -272,7 +309,7 @@ packages:
     description:
       path: "."
       ref: HEAD
-      resolved-ref: "1b2bd4310315b9455bc9a552896adf1e230a5a71"
+      resolved-ref: b58c7178619a7a97388a4c7004871e6ec373d25a
       url: "https://github.com/Termare/termare_pty"
     source: git
     version: "1.0.0+1"
@@ -281,7 +318,7 @@ packages:
     description:
       path: "."
       ref: HEAD
-      resolved-ref: "9f1ae32686054bb589c60776a747ebdec95ca41b"
+      resolved-ref: "1d2e49d18f042e1c4ea55fedcda1d096622d1ad0"
       url: "https://github.com/Termare/termare_view"
     source: git
     version: "0.0.7"
@@ -291,7 +328,7 @@ packages:
       name: test_api
       url: "https://pub.flutter-io.cn"
     source: hosted
-    version: "0.4.2"
+    version: "0.4.8"
   typed_data:
     dependency: transitive
     description:
@@ -305,7 +342,7 @@ packages:
       name: vector_math
       url: "https://pub.flutter-io.cn"
     source: hosted
-    version: "2.1.0"
+    version: "2.1.1"
   vibration:
     dependency: "direct main"
     description:
@@ -326,35 +363,44 @@ packages:
       name: webview_flutter
       url: "https://pub.flutter-io.cn"
     source: hosted
-    version: "2.1.2"
+    version: "2.8.0"
   webview_flutter_android:
     dependency: transitive
     description:
       name: webview_flutter_android
       url: "https://pub.flutter-io.cn"
     source: hosted
-    version: "2.2.0"
+    version: "2.8.2"
   webview_flutter_platform_interface:
     dependency: transitive
     description:
       name: webview_flutter_platform_interface
       url: "https://pub.flutter-io.cn"
     source: hosted
-    version: "1.2.0"
+    version: "1.8.0"
   webview_flutter_wkwebview:
     dependency: transitive
     description:
       name: webview_flutter_wkwebview
       url: "https://pub.flutter-io.cn"
     source: hosted
-    version: "2.2.0"
+    version: "2.7.1"
   win32:
     dependency: transitive
     description:
       name: win32
       url: "https://pub.flutter-io.cn"
     source: hosted
-    version: "2.2.10"
+    version: "2.3.3"
+  xterm:
+    dependency: "direct main"
+    description:
+      path: "."
+      ref: v3
+      resolved-ref: e4766dbc377bf5fb3a2df6c56d021399db1ec6ea
+      url: "git@github.com:TerminalStudio/xterm.dart.git"
+    source: git
+    version: "3.0.3-alpha"
 sdks:
   dart: ">=2.14.0 <3.0.0"
   flutter: ">=2.5.0"
