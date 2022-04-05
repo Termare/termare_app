@@ -33,7 +33,11 @@ class _XTermWrapperState extends State<XTermWrapper> {
     widget.terminal.onOutput = (data) {
       widget.pseudoTerminal.write(data);
     };
-    streamSubscription ??= widget.pseudoTerminal.out.listen(
+    
+    widget.terminal.onResize = (width, height, pixelWidth, pixelHeight) {
+      widget.pseudoTerminal.resize(width, height);
+    };
+    streamSubscription ??= widget.pseudoTerminal.out.asBroadcastStream().listen(
       (String data) {
         widget.terminal.write(data);
       },
@@ -42,6 +46,8 @@ class _XTermWrapperState extends State<XTermWrapper> {
 
   @override
   Widget build(BuildContext context) {
-    return TerminalView(widget.terminal);
+    return TerminalView(
+      widget.terminal,
+    );
   }
 }

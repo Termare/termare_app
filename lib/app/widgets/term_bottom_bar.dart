@@ -2,11 +2,11 @@ import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:global_repository/src/utils/screen_util.dart';
-import 'package:termare_view/termare_view.dart';
+import 'package:pty/pty.dart';
 
 class TerminalFoot extends StatefulWidget {
-  const TerminalFoot({Key key, this.controller}) : super(key: key);
-  final TermareController controller;
+  const TerminalFoot({Key key, this.pseudoTerminal}) : super(key: key);
+  final PseudoTerminal pseudoTerminal;
 
   @override
   _TerminalFootState createState() => _TerminalFootState();
@@ -33,18 +33,11 @@ class _TerminalFootState extends State<TerminalFoot>
     height.addListener(() {
       setState(() {});
     });
-    widget.controller.addListener(updateState);
   }
 
-  void updateState() {
-    if (mounted) {
-      setState(() {});
-    }
-  }
 
   @override
   void dispose() {
-    widget.controller.removeListener(updateState);
     super.dispose();
   }
 
@@ -100,73 +93,73 @@ class _TerminalFootState extends State<TerminalFoot>
               children: <Widget>[
                 Expanded(
                   child: BottomItem(
-                    controller: widget.controller,
+                    pseudoTerminal: widget.pseudoTerminal,
                     title: 'ESC',
                     onTap: () {
-                      widget.controller.input?.call(
-                        utf8.decode([0x1b]),
-                      );
+                      // widget.pseudoTerminal.input?.call(
+                      //   utf8.decode([0x1b]),
+                      // );
                     },
                   ),
                 ),
                 Expanded(
                   child: BottomItem(
-                    controller: widget.controller,
+                    pseudoTerminal: widget.pseudoTerminal,
                     title: 'TAB',
                     onTap: () {
-                      widget.controller.input?.call(
-                        utf8.decode([9]),
-                      );
+                      // widget.pseudoTerminal.input?.call(
+                      //   utf8.decode([9]),
+                      // );
                     },
                   ),
                 ),
                 Expanded(
                   child: BottomItem(
-                    controller: widget.controller,
+                    pseudoTerminal: widget.pseudoTerminal,
                     title: 'CTRL',
-                    enable: widget.controller.ctrlEnable,
+                    enable: false,
                     onTap: () {
-                      widget.controller.enbaleOrDisableCtrl();
-                      setState(() {});
+                      // widget.pseudoTerminal.enbaleOrDisableCtrl();
+                      // setState(() {});
                     },
                   ),
                 ),
                 Expanded(
                   child: BottomItem(
-                    controller: widget.controller,
+                    pseudoTerminal: widget.pseudoTerminal,
                     title: 'ALT',
                   ),
                 ),
                 Expanded(
                   child: BottomItem(
-                    controller: widget.controller,
+                    pseudoTerminal: widget.pseudoTerminal,
                     title: '－',
                     onTap: () {
-                      widget.controller.input?.call(
-                        utf8.decode([110 - 96]),
-                      );
+                      // widget.pseudoTerminal.input?.call(
+                      //   utf8.decode([110 - 96]),
+                      // );
                     },
                   ),
                 ),
                 Expanded(
                   child: BottomItem(
-                    controller: widget.controller,
+                    pseudoTerminal: widget.pseudoTerminal,
                     title: '↑',
                     onTap: () {
-                      widget.controller.input?.call(
-                        utf8.decode([112 - 96]),
-                      );
+                      // widget.pseudoTerminal.input?.call(
+                      //   utf8.decode([112 - 96]),
+                      // );
                     },
                   ),
                 ),
                 Expanded(
                   child: BottomItem(
-                    controller: widget.controller,
+                    pseudoTerminal: widget.pseudoTerminal,
                     title: '↲',
                     onTap: () {
-                      widget.controller.input?.call(
-                        utf8.decode([110 - 96]),
-                      );
+                      // widget.pseudoTerminal.input?.call(
+                      //   utf8.decode([110 - 96]),
+                      // );
                     },
                   ),
                 ),
@@ -177,72 +170,72 @@ class _TerminalFootState extends State<TerminalFoot>
               children: <Widget>[
                 Expanded(
                   child: BottomItem(
-                    controller: widget.controller,
+                    pseudoTerminal: widget.pseudoTerminal,
                     title: 'INS',
                     onTap: () {
-                      widget.controller.input?.call(
-                        utf8.decode([0x1b]),
-                      );
+                      // widget.pseudoTerminal.input?.call(
+                      //   utf8.decode([0x1b]),
+                      // );
                     },
                   ),
                 ),
                 Expanded(
                   child: BottomItem(
-                    controller: widget.controller,
+                    pseudoTerminal: widget.pseudoTerminal,
                     title: 'END',
                     onTap: () {
-                      widget.controller.input?.call(
-                        utf8.decode([9]),
-                      );
+                      // widget.pseudoTerminal.input?.call(
+                      //   utf8.decode([9]),
+                      // );
                     },
                   ),
                 ),
                 Expanded(
                   child: BottomItem(
-                    controller: widget.controller,
+                    pseudoTerminal: widget.pseudoTerminal,
                     title: 'SHIFT',
                     onTap: () {
-                      widget.controller.enbaleOrDisableCtrl();
-                      setState(() {});
+                      // widget.pseudoTerminal.enbaleOrDisableCtrl();
+                      // setState(() {});
                     },
                   ),
                 ),
                 Expanded(
                   child: BottomItem(
-                    controller: widget.controller,
+                    pseudoTerminal: widget.pseudoTerminal,
                     title: ':',
                   ),
                 ),
                 Expanded(
                   child: BottomItem(
-                    controller: widget.controller,
+                    pseudoTerminal: widget.pseudoTerminal,
                     title: '←',
                     onTap: () {
-                      widget.controller.input?.call(
-                        utf8.decode([112 - 96]),
-                      );
+                      // widget.pseudoTerminal.input?.call(
+                      //   utf8.decode([112 - 96]),
+                      // );
                     },
                   ),
                 ),
                 Expanded(
                   child: BottomItem(
-                    controller: widget.controller,
+                    pseudoTerminal: widget.pseudoTerminal,
                     title: '↓',
                     onTap: () {
-                      widget.controller.input?.call(
-                        utf8.decode([110 - 96]),
-                      );
+                      // widget.pseudoTerminal.input?.call(
+                      //   utf8.decode([110 - 96]),
+                      // );
                     },
                   ),
                 ),
                 Expanded(
                   child: BottomItem(
-                    controller: widget.controller,
+                    pseudoTerminal: widget.pseudoTerminal,
                     title: '→',
                     onTap: () {
-                      widget.controller.input?.call(
-                        utf8.decode([110 - 96]),
-                      );
+                      // widget.pseudoTerminal.input?.call(
+                      //   utf8.decode([110 - 96]),
+                      // );
                     },
                   ),
                 ),
@@ -258,12 +251,12 @@ class _TerminalFootState extends State<TerminalFoot>
 class BottomItem extends StatefulWidget {
   const BottomItem({
     Key key,
-    this.controller,
+    this.pseudoTerminal,
     this.title,
     this.onTap,
     this.enable = false,
   }) : super(key: key);
-  final TermareController controller;
+  final PseudoTerminal pseudoTerminal;
   final String title;
   final void Function() onTap;
   final bool enable;
@@ -316,7 +309,7 @@ class _BottomItemState extends State<BottomItem> {
           child: Text(
             widget.title,
             style: TextStyle(
-              color: widget.controller.theme.defaultFontColor,
+              color: Colors.white,
               fontWeight: FontWeight.w500,
             ),
           ),

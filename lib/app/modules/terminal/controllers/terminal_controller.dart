@@ -51,6 +51,9 @@ class TerminalController extends GetxController {
     envir = Map.from(Platform.environment);
     envir['HOME'] = RuntimeEnvir.homePath;
     envir['TERMUX_PREFIX'] = RuntimeEnvir.usrPath;
+
+    envir['TERM'] = 'xterm-256color';
+    envir['PATH'] = RuntimeEnvir.path;
     if (File('${RuntimeEnvir.usrPath}/lib/libtermux-exec.so').existsSync()) {
       envir['LD_PRELOAD'] = '${RuntimeEnvir.usrPath}/lib/libtermux-exec.so';
     }
@@ -90,11 +93,11 @@ class TerminalController extends GetxController {
     final double screenHeight = size.height / window.devicePixelRatio;
     controller.setWindowSize(Size(screenWidth, screenHeight));
     final PseudoTerminal pseudoTerminal = PseudoTerminal.start(
-      'bash',
-      [],
+      RuntimeEnvir.binPath + '/' + settingInfo.cmdLine,
+      ['-l'],
       blocking: false,
       environment: envir,
-    );
+    )..init();
     Future.delayed(const Duration(milliseconds: 100), () {
       if (settingInfo.initCmd.isNotEmpty) {
         pseudoTerminal.write(settingInfo.initCmd + '\n');
@@ -137,16 +140,17 @@ class TerminalController extends GetxController {
     await Future.delayed(const Duration(milliseconds: 300));
     await Get.dialog(DownloadBootPage());
     final PseudoTerminal pseudoTerminal = PseudoTerminal.start(
-      'bash',
+      '/system/bin/sh',
       [],
       blocking: false,
       environment: envir,
-    );
+    )..init();
     // pseudoTerminal.startPolling();
     // await pseudoTerminal.defineTermFunc(
     //   initShell,
     //   tmpFilePath: RuntimeEnvir.filesPath + '/define',
     // );
+    pseudoTerminal.write(initShell);
     Log.i('初始化成功');
     pseudoTerminal.write('initApp\n');
     terms.add(
@@ -172,7 +176,7 @@ class TerminalController extends GetxController {
     return Hero(
       tag: '$currentTerminal',
       child: TermareViewWithBottomBar(
-        controller: entity.controller,
+        pseudoTerminal: entity.pseudoTerminal,
         termview: XTermWrapper(
           pseudoTerminal: entity.pseudoTerminal,
           terminal: entity.terminal,
@@ -190,7 +194,7 @@ class TerminalController extends GetxController {
         Hero(
           tag: '$i',
           child: TermareViewWithBottomBar(
-            controller: entity.controller,
+            pseudoTerminal: entity.pseudoTerminal,
             termview: XTermWrapper(
               pseudoTerminal: entity.pseudoTerminal,
               terminal: entity.terminal,

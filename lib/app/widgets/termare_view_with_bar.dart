@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:global_repository/global_repository.dart';
+import 'package:pty/pty.dart';
 import 'package:termare_view/termare_view.dart';
 import 'term_bottom_bar.dart';
 
@@ -9,10 +10,10 @@ class TermareViewWithBottomBar extends StatefulWidget {
   const TermareViewWithBottomBar({
     Key key,
     this.termview,
-    this.controller,
+    this.pseudoTerminal,
   }) : super(key: key);
   final Widget termview;
-  final TermareController controller;
+  final PseudoTerminal pseudoTerminal;
   @override
   _TermareViewWithBottomBarState createState() =>
       _TermareViewWithBottomBarState();
@@ -31,7 +32,7 @@ class _TermareViewWithBottomBarState extends State<TermareViewWithBottomBar> {
       value: systemUiOverlayStyle,
       child: Scaffold(
         resizeToAvoidBottomInset: true,
-        backgroundColor: widget.controller.theme.backgroundColor,
+        backgroundColor: Colors.black,
         body: SafeArea(
           child: Stack(
             children: [
@@ -41,7 +42,7 @@ class _TermareViewWithBottomBarState extends State<TermareViewWithBottomBar> {
                     child: widget.termview,
                   ),
                   TerminalFoot(
-                    controller: widget.controller,
+                    pseudoTerminal: widget.pseudoTerminal,
                   ),
                 ],
               ),
