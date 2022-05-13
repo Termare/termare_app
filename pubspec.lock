@@ -7,7 +7,7 @@ packages:
       name: archive
       url: "https://pub.flutter-io.cn"
     source: hosted
-    version: "3.1.6"
+    version: "3.3.0"
   async:
     dependency: transitive
     description:
@@ -76,7 +76,7 @@ packages:
     description:
       path: "."
       ref: HEAD
-      resolved-ref: "780ac18a3da379a6166787739e73fa4d86c39b22"
+      resolved-ref: a437347d882e8e9110564cef9495f8dafc6c8b89
       url: "https://github.com/Termare/dart_pty"
     source: git
     version: "0.0.3"
@@ -86,7 +86,7 @@ packages:
       name: dio
       url: "https://pub.flutter-io.cn"
     source: hosted
-    version: "4.0.4"
+    version: "4.0.6"
   equatable:
     dependency: transitive
     description:
@@ -120,6 +120,13 @@ packages:
     description: flutter
     source: sdk
     version: "0.0.0"
+  flutter_acrylic:
+    dependency: "direct main"
+    description:
+      name: flutter_acrylic
+      url: "https://pub.flutter-io.cn"
+    source: hosted
+    version: "1.0.0+2"
   flutter_test:
     dependency: "direct dev"
     description: flutter
@@ -149,7 +156,7 @@ packages:
     description:
       path: "."
       ref: HEAD
-      resolved-ref: "8ae0e1b004241124cad124a1a343fa07a4acf279"
+      resolved-ref: "5a1f3d90c0d1abff1065b593154de2f15dafaa64"
       url: "https://github.com/nightmare-space/global_repository"
     source: git
     version: "0.0.1"
@@ -222,13 +229,13 @@ packages:
       name: plugin_platform_interface
       url: "https://pub.flutter-io.cn"
     source: hosted
-    version: "2.0.2"
+    version: "2.1.2"
   pseudo_terminal_utils:
     dependency: "direct main"
     description:
       path: "."
       ref: HEAD
-      resolved-ref: "55877213cc41e71b065a4aba5e6b33c847e6bd59"
+      resolved-ref: "90d635ced306dc4237171da20ce497fd12134902"
       url: "https://github.com/Termare/pseudo_terminal_utils"
     source: git
     version: "0.0.1"
@@ -251,12 +258,10 @@ packages:
   signale:
     dependency: transitive
     description:
-      path: "."
-      ref: HEAD
-      resolved-ref: "99e278923e468ca882dd13208255fd0944ad5da3"
-      url: "https://github.com/nightmare-space/signale"
-    source: git
-    version: "0.0.6"
+      name: signale
+      url: "https://pub.flutter-io.cn"
+    source: hosted
+    version: "0.0.7"
   sky_engine:
     dependency: transitive
     description: flutter
@@ -296,7 +301,7 @@ packages:
       name: synchronized
       url: "https://pub.flutter-io.cn"
     source: hosted
-    version: "3.0.0"
+    version: "3.0.0+2"
   term_glyph:
     dependency: transitive
     description:
@@ -370,37 +375,35 @@ packages:
       name: webview_flutter_android
       url: "https://pub.flutter-io.cn"
     source: hosted
-    version: "2.8.2"
+    version: "2.8.5"
   webview_flutter_platform_interface:
     dependency: transitive
     description:
       name: webview_flutter_platform_interface
       url: "https://pub.flutter-io.cn"
     source: hosted
-    version: "1.8.0"
+    version: "1.8.1"
   webview_flutter_wkwebview:
     dependency: transitive
     description:
       name: webview_flutter_wkwebview
       url: "https://pub.flutter-io.cn"
     source: hosted
-    version: "2.7.1"
+    version: "2.7.2"
   win32:
     dependency: transitive
     description:
       name: win32
       url: "https://pub.flutter-io.cn"
     source: hosted
-    version: "2.3.3"
+    version: "2.5.1"
   xterm:
     dependency: "direct main"
     description:
-      path: "."
-      ref: v3
-      resolved-ref: e4766dbc377bf5fb3a2df6c56d021399db1ec6ea
-      url: "git@github.com:TerminalStudio/xterm.dart.git"
-    source: git
-    version: "3.0.3-alpha"
+      path: "/Users/nightmare/Desktop/TerminalStudio/xterm.dart"
+      relative: false
+    source: path
+    version: "3.0.6-alpha"
 sdks:
-  dart: ">=2.14.0 <3.0.0"
+  dart: ">=2.15.0 <3.0.0"
   flutter: ">=2.5.0"

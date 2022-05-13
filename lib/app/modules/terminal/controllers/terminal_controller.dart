@@ -61,7 +61,7 @@ class TerminalController extends GetxController {
   List<PtyTermEntity> terms = [];
   int currentTerminal = 0;
   // final player = AudioPlayer();
-  Map<String, String> envir = {};
+  Map<String, String> envir;
   SettingController settingController = Get.find<SettingController>();
   bool hasBash() {
     final File bashFile = File(RuntimeEnvir.binPath + '/bash');
@@ -92,10 +92,22 @@ class TerminalController extends GetxController {
     final double screenWidth = size.width / window.devicePixelRatio;
     final double screenHeight = size.height / window.devicePixelRatio;
     controller.setWindowSize(Size(screenWidth, screenHeight));
+    Log.i('${RuntimeEnvir.binPath + '/' + 'bash'}');
+    envir = Map.from(Platform.environment);
+    envir.addAll({
+      'TERM': 'xterm-256color',
+      'PATH': '${RuntimeEnvir.binPath}:' + Platform.environment['PATH'],
+      'HOME': RuntimeEnvir.homePath,
+    });
+    envir['TERMUX_PREFIX'] = RuntimeEnvir.usrPath;
+    if (File('${RuntimeEnvir.usrPath}/lib/libtermux-exec.so').existsSync()) {
+      envir['LD_PRELOAD'] = '${RuntimeEnvir.usrPath}/lib/libtermux-exec.so';
+    }
     final PseudoTerminal pseudoTerminal = PseudoTerminal.start(
-      RuntimeEnvir.binPath + '/' + settingInfo.cmdLine,
+      GetPlatform.isMacOS ? '/bin/zsh' : (RuntimeEnvir.binPath + '/' + 'bash'),
       ['-l'],
       blocking: false,
+      workingDirectory: RuntimeEnvir.homePath,
       environment: envir,
     )..init();
     Future.delayed(const Duration(milliseconds: 100), () {
@@ -177,6 +189,7 @@ class TerminalController extends GetxController {
       tag: '$currentTerminal',
       child: TermareViewWithBottomBar(
         pseudoTerminal: entity.pseudoTerminal,
+        terminal: entity.terminal,
         termview: XTermWrapper(
           pseudoTerminal: entity.pseudoTerminal,
           terminal: entity.terminal,

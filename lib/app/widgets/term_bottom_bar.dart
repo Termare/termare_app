@@ -3,10 +3,14 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:global_repository/src/utils/screen_util.dart';
 import 'package:pty/pty.dart';
+import 'package:xterm/input/keys.dart';
+import 'package:xterm/next/terminal.dart';
 
 class TerminalFoot extends StatefulWidget {
-  const TerminalFoot({Key key, this.pseudoTerminal}) : super(key: key);
+  const TerminalFoot({Key key, this.pseudoTerminal, this.terminal})
+      : super(key: key);
   final PseudoTerminal pseudoTerminal;
+  final Terminal terminal;
 
   @override
   _TerminalFootState createState() => _TerminalFootState();
@@ -34,7 +38,6 @@ class _TerminalFootState extends State<TerminalFoot>
       setState(() {});
     });
   }
-
 
   @override
   void dispose() {
@@ -157,6 +160,7 @@ class _TerminalFootState extends State<TerminalFoot>
                     pseudoTerminal: widget.pseudoTerminal,
                     title: '↲',
                     onTap: () {
+                      widget.terminal.keyInput(TerminalKey.enter);
                       // widget.pseudoTerminal.input?.call(
                       //   utf8.decode([110 - 96]),
                       // );

@@ -3,14 +3,19 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_acrylic/flutter_acrylic.dart';
 
 import 'package:get/get.dart';
 import 'package:global_repository/global_repository.dart';
 
 import 'app/routes/app_pages.dart';
 
-void main() {
+Future<void> main() async {
   RuntimeEnvir.initEnvirWithPackageName('com.nightmare.termare');
+   WidgetsFlutterBinding.ensureInitialized();
+  if (GetPlatform.isDesktop) {
+    await Window.initialize();
+  }
   runApp(
     ToastApp(
       child: GetMaterialApp(
@@ -19,7 +24,6 @@ void main() {
         initialRoute: AppPages.INITIAL,
         getPages: AppPages.routes,
         defaultTransition: Transition.fade,
-        
       ),
     ),
   );

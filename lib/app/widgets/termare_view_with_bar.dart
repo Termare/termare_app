@@ -4,6 +4,7 @@ import 'package:flutter/services.dart';
 import 'package:global_repository/global_repository.dart';
 import 'package:pty/pty.dart';
 import 'package:termare_view/termare_view.dart';
+import 'package:xterm/next.dart';
 import 'term_bottom_bar.dart';
 
 class TermareViewWithBottomBar extends StatefulWidget {
@@ -11,9 +12,11 @@ class TermareViewWithBottomBar extends StatefulWidget {
     Key key,
     this.termview,
     this.pseudoTerminal,
+    this.terminal,
   }) : super(key: key);
   final Widget termview;
   final PseudoTerminal pseudoTerminal;
+  final Terminal terminal;
   @override
   _TermareViewWithBottomBarState createState() =>
       _TermareViewWithBottomBarState();
@@ -32,7 +35,7 @@ class _TermareViewWithBottomBarState extends State<TermareViewWithBottomBar> {
       value: systemUiOverlayStyle,
       child: Scaffold(
         resizeToAvoidBottomInset: true,
-        backgroundColor: Colors.black,
+        backgroundColor: Colors.transparent,
         body: SafeArea(
           child: Stack(
             children: [
@@ -43,6 +46,7 @@ class _TermareViewWithBottomBarState extends State<TermareViewWithBottomBar> {
                   ),
                   TerminalFoot(
                     pseudoTerminal: widget.pseudoTerminal,
+                    terminal: widget.terminal,
                   ),
                 ],
               ),

@@ -14,6 +14,7 @@ dependencies:
       url: git@github.com:TerminalStudio/xterm.dart.git
       ref: v3
 
+  flutter_acrylic: ^1.0.0
   pty:
     git: https://github.com/TerminalStudio/pty
   vibration: ^1.7.3
@@ -63,3 +64,8 @@ flutter:
     - assets/icons/
     - assets/lib/
     - assets/text/
+
+
+dependency_overrides:
+  xterm:
+    path: /Users/nightmare/Desktop/TerminalStudio/xterm.dart

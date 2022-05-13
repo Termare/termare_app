@@ -1,7 +1,7 @@
-
 import 'package:flutter/material.dart';
 import 'package:flutter/physics.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_acrylic/flutter_acrylic.dart';
 import 'package:get/get.dart';
 import 'package:global_repository/global_repository.dart';
 import 'package:pty/pty.dart';
@@ -73,6 +73,12 @@ class _TerminalPagesState extends State<TerminalPages>
         setState(() {});
       });
     }
+    Window.makeTitlebarTransparent();
+    Window.enableFullSizeContentView();
+    Window.setEffect(
+      effect: WindowEffect.acrylic,
+      dark: false,
+    );
   }
 
   double offset = 0;
@@ -122,6 +128,42 @@ class _TerminalPagesState extends State<TerminalPages>
 
   @override
   Widget build(BuildContext context) {
+    return Material(
+      color: Colors.transparent,
+      child: SafeArea(
+        child: Column(
+          children: [
+            Row(
+              children: [
+                SizedBox(
+                  width: 8.w,
+                ),
+                Container(
+                  decoration: BoxDecoration(
+                    color: Theme.of(context).primaryColor,
+                    borderRadius: BorderRadius.circular(8.w),
+                  ),
+                  padding: EdgeInsets.symmetric(
+                    horizontal: 6.w,
+                    vertical: 4.w,
+                  ),
+                  child: const Text(
+                    'bash x',
+                    style: TextStyle(
+                      color: Colors.white,
+                      height: 1.0,
+                    ),
+                  ),
+                ),
+              ],
+            ),
+            Expanded(
+              child: controller.getCurTerm(),
+            ),
+          ],
+        ),
+      ),
+    );
     final Map<int, Widget> map = {
       1: Builder(builder: (context) {
         double _offset;
