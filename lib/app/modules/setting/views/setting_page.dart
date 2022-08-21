@@ -4,7 +4,7 @@ import 'dart:io';
 import 'package:dart_pty/dart_pty.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_webview_plugin/flutter_webview_plugin.dart';
+// import 'package:flutter_webview_plugin/flutter_webview_plugin.dart';
 import 'package:get/get.dart';
 import 'package:global_repository/global_repository.dart';
 import 'package:termare_app/app/modules/setting/controllers/setting_controller.dart';
@@ -466,9 +466,9 @@ class _SettingPageState extends State<SettingPage> {
                       SystemUiMode.manual,
                       overlays: [],
                     );
-                    Get.to(WebviewScaffold(
-                      url: 'http://127.0.0.1:8080',
-                    ));
+                    // Get.to(WebviewScaffold(
+                    //   url: 'http://127.0.0.1:8080',
+                    // ));
                   },
                 ),
                 SettingItem(

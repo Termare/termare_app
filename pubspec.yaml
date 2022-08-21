@@ -10,8 +10,8 @@ environment:
 
 dependencies:
   xterm:
-    git: 
-      url: git@github.com:TerminalStudio/xterm.dart.git
+    git:
+      url: https://github.com/mengyanshou/xterm.dart
       ref: v3
 
   flutter_acrylic: ^1.0.0
@@ -32,7 +32,6 @@ dependencies:
   termare_view:
     git: https://github.com/Termare/termare_view
   webview_flutter: ^2.0.12
-  flutter_webview_plugin: ^0.4.0
   pseudo_terminal_utils:
     git: https://github.com/Termare/pseudo_terminal_utils
 dev_dependencies:
@@ -67,5 +66,5 @@ flutter:
 
 
 dependency_overrides:
-  xterm:
-    path: /Users/nightmare/Desktop/TerminalStudio/xterm.dart
+  # xterm:
+  #   path: /Users/nightmare/Desktop/TerminalStudio/xterm.dart
