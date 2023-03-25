@@ -9,7 +9,7 @@ import 'package:termare_app/app/modules/dashboard/views/dashboard.dart';
 import 'package:termare_app/app/modules/terminal/controllers/terminal_controller.dart';
 import 'package:termare_app/config/config.dart';
 import 'package:termare_view/termare_view.dart';
-import 'package:xterm/next.dart';
+import 'package:xterm/xterm.dart' hide TerminalController;
 
 import '../../setting/views/setting_page.dart';
 

@@ -3,9 +3,7 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:get/utils.dart';
 import 'package:pty/pty.dart';
-import 'package:xterm/next.dart';
-import 'package:xterm/next/ui/terminal_theme.dart';
-import 'package:xterm/next/ui/themes.dart';
+import 'package:xterm/xterm.dart';
 
 class XTermWrapper extends StatefulWidget {
   const XTermWrapper({

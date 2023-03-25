@@ -3,8 +3,7 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:global_repository/src/utils/screen_util.dart';
 import 'package:pty/pty.dart';
-import 'package:xterm/input/keys.dart';
-import 'package:xterm/next/terminal.dart';
+import 'package:xterm/xterm.dart';
 
 class TerminalFoot extends StatefulWidget {
   const TerminalFoot({Key key, this.pseudoTerminal, this.terminal})

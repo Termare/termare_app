@@ -10,9 +10,7 @@ environment:
 
 dependencies:
   xterm:
-    git:
-      url: https://github.com/mengyanshou/xterm.dart
-      ref: v3
+    git: https://github.com/TerminalStudio/xterm.dart
 
   flutter_acrylic: ^1.0.0
   pty:
@@ -27,10 +25,6 @@ dependencies:
     git: https://github.com/nightmare-space/global_repository
   cupertino_icons: ^1.0.2
   dio: ^4.0.0
-  termare_pty:
-    git: https://github.com/Termare/termare_pty
-  termare_view:
-    git: https://github.com/Termare/termare_view
   webview_flutter: ^2.0.12
   pseudo_terminal_utils:
     git: https://github.com/Termare/pseudo_terminal_utils

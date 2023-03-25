@@ -3,8 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:global_repository/global_repository.dart';
 import 'package:pty/pty.dart';
-import 'package:termare_view/termare_view.dart';
-import 'package:xterm/next.dart';
+import 'package:xterm/xterm.dart';
 import 'term_bottom_bar.dart';
 
 class TermareViewWithBottomBar extends StatefulWidget {
